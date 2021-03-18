@@ -9,7 +9,7 @@ const Header = () => {
   const { title } = useSiteMetadata()
 
   return (
-    <header className="bg-body d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mt-3 mb-5">
+    <header className="bg-body d-flex flex-column flex-md-row align-items-center pb-3 px-md-4 mt-3 mb-5">
       <Link className="nav-logo my-2 me-md-auto h4" to="/">
         <img src={logo} alt={title} className="align-middle" style={{width: "50px"}} />
 

@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-const PostCard = ({ data }) => (
+const EssayAbstractCard = ({ data }) => (
   <article className="post-card card border-0" key={data.fields.slug}>
     <div className="card-body">
       <div className="row gx-4 gy-3">
@@ -25,7 +25,7 @@ const PostCard = ({ data }) => (
         </div>
         <div className="col-sm-6 col-md-6">
           <h2 className="post-title card-title h6">
-            <Link className="stretched-link" to={`/essays${data.fields.slug}`}>
+            <Link className="stretched-link" to={data.fields.path}>
               {data.frontmatter.title}
             </Link>
           </h2>
@@ -45,4 +45,4 @@ const PostCard = ({ data }) => (
   </article>
 )
 
-export default PostCard
+export default EssayAbstractCard

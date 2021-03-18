@@ -64,6 +64,13 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        path: `${__dirname}/content/talks`,
+        name: "Talks",
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         name: "pages",
         path: `${__dirname}/src/pages/`,
       },
@@ -74,6 +81,59 @@ module.exports = {
       options: {
         path: `${__dirname}/assets`,
         name: "assets",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-feed",
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields { slug }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "alfakini.com RSS Feed",
+          },
+        ],
       },
     },
     "gatsby-plugin-image",
@@ -88,8 +148,16 @@ module.exports = {
         plugins: [
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-check-links",
-          "gatsby-remark-embedder",
-          "gatsby-remark-external-links",
+          "gatsby-remark-autolink-headers",
+          "gatsby-remark-numbered-footnotes",
+          "gatsby-remark-responsive-iframe",
+           {
+              resolve: "gatsby-remark-external-links",
+              options: {
+                target: "_blank",
+                rel: "nofollow noopener noreferrer"
+              }
+          },
           "gatsby-remark-smartypants",
           {
             resolve: "gatsby-remark-images",
@@ -132,13 +200,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-feed",
-      options: {
-        output: "/rss.xml",
-        title: "alfakini.com RSS Feed",
-      }
-    },
-    {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://www.alfakini.com",
@@ -157,6 +218,15 @@ module.exports = {
         display: "browser",
         icon: "assets/logo.png",
       },
+    },
+    "gatsby-plugin-offline",
+    "gatsby-plugin-catch-links",
+    "gatsby-plugin-twitter",
+    {
+      resolve: "gatsby-plugin-disqus",
+      options: {
+          shortname: "alfakini"
+      }
     },
   ],
 };

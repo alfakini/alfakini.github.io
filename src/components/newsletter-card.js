@@ -31,7 +31,6 @@ const SubscriptionForm = ({ onSubmit, onChange, formStatus, email, isEmailValid 
   )
 }
 
-
 class NewsletterCard extends React.Component {
   constructor(props) {
     super(props)
@@ -87,7 +86,7 @@ class NewsletterCard extends React.Component {
             </h2>
             <div className="card-text">
               <p className="lead">
-                Join the newsletter to receive the latest essays in your inbox!
+                Join the newsletter to receive the latest essays in your inbox. Alternatively, you can <a href="/rss.xml">subscribe with RSS</a>.
               </p>
               {(isEmailValid && formStatus === "SUCCESS")
                 ? <span class="text-success">

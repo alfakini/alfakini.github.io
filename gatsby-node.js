@@ -6,6 +6,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     fragment MarkdownRemarkFieldsFragment on MarkdownRemarkEdge {
       node {
+        fileAbsolutePath
         fields {
           abstract
           authors
@@ -20,35 +21,24 @@ exports.createPages = async ({ graphql, actions }) => {
           }
           date
           id
+          path
           published
           slug
           tags
           title
+          type
         }
       }
     }
 
     query {
-      books: allMarkdownRemark(
-        filter: {fileAbsolutePath: {regex: "/(books)/"  }}
+      contents: allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
-        limit: 1000
       ) {
         edges {
           ...MarkdownRemarkFieldsFragment
         }
       }
-
-      essays: allMarkdownRemark(
-        filter: {fileAbsolutePath: {regex: "/(essays)/"  }}
-        sort: { fields: [frontmatter___date], order: DESC }
-        limit: 1000
-      ) {
-        edges {
-          ...MarkdownRemarkFieldsFragment
-        }
-      }
-
     }
   `)
 
@@ -56,48 +46,35 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors
   }
 
-  const essays = result.data.essays.edges
+  const contents = result.data.contents.edges
 
-  essays.forEach((essay, index) => {
-    const previous = index === essays.length - 1 ? null : essays[index + 1].node
-    const next = index === 0 ? null : essays[index - 1].node
+  contents.forEach((content, index) => {
+    const previous = index === contents.length - 1 ? null : contents[index + 1].node
+    const next = index === 0 ? null : contents[index - 1].node
 
-    console.log(`/essays${essay.node.fields.slug}`)
+    console.log(content.node.fields.path)
     actions.createPage({
-      path: `/essays${essay.node.fields.slug}`,
+      path: content.node.fields.path,
       component: essayTemplate,
       context: {
-        slug: essay.node.fields.slug,
+        slug: content.node.fields.slug,
         previous,
         next,
       },
     })
   })
-
-  const books = result.data.books.edges
-
-  books.forEach((book, index) => {
-    const previous = index === books.length - 1 ? null : books[index + 1].node
-    const next = index === 0 ? null : books[index - 1].node
-
-    console.log(`/books${book.node.fields.slug}`)
-    actions.createPage({
-      path: `/books${book.node.fields.slug}`,
-      component: essayTemplate,
-      context: {
-        slug: book.node.fields.slug,
-        previous,
-        next,
-      },
-    })
-  })
-
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === "MarkdownRemark") {
     actions.createNodeField({ name: "id", node, value: node.id })
-    actions.createNodeField({ name: "type", node, value: node.frontmatter.type || "" })
+
+    const slug = createFilePath({ node, getNode })
+    const [found] = node.fileAbsolutePath.match(/content\/(\w+)\//g)
+    const type = found.split('/')[1]
+    const path = `/${type}${slug}`
+    actions.createNodeField({ name: "type", node, value: type })
+    actions.createNodeField({ name: "path", node, value: path })
 
     actions.createNodeField({ name: "abstract", node, value: node.frontmatter.abstract })
     actions.createNodeField({ name: "authors", node, value: node.frontmatter.authors })
@@ -106,7 +83,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     actions.createNodeField({ name: "date", node, value: node.frontmatter.date ? node.frontmatter.date.split(" ")[0] : "" })
     actions.createNodeField({ name: "images", node, value: node.frontmatter.images })
     actions.createNodeField({ name: "published", node, value: node.frontmatter.published })
-    actions.createNodeField({ name: "slug", node, value: createFilePath({ node, getNode }) })
+    actions.createNodeField({ name: "slug", node, value: slug })
     actions.createNodeField({ name: "tags", node, value: node.frontmatter.tags })
     actions.createNodeField({ name: "title", node, value: node.frontmatter.title })
   }

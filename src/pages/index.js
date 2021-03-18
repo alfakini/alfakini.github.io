@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import PostCard from "../components/post-card"
+import EssayAbstractCard from "../components/essay-abstract-card"
 import NewsletterCard from "../components/newsletter-card"
 
 const IndexPage = ({ location, data }) => {
@@ -19,7 +19,7 @@ const IndexPage = ({ location, data }) => {
           {essays.map(post =>  {
             return (
               <>
-                <PostCard data={post.node} />
+                <EssayAbstractCard data={post.node} />
                 <hr />
               </>
             )
@@ -41,6 +41,8 @@ export const pageQuery = graphql`
         node {
           fields {
             slug
+            type
+            path
             cover {
               childImageSharp {
                 gatsbyImageData(
