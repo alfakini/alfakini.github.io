@@ -1,0 +1,206 @@
+$primary: #181818;
+$secondary: #687385;
+$link-color: $primary;
+$link-color-hover: $secondary;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+$font-family-sans-serif:
+  "Inter",
+  // Cross-platform generic font family (default user interface font)
+  system-ui,
+  // Safari for macOS and iOS (San Francisco)
+  -apple-system,
+  // Chrome < 56 for macOS (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Android
+  Roboto,
+  // Basic web fallback
+  "Helvetica Neue", Arial,
+  // Linux
+  "Noto Sans",
+  "Liberation Sans",
+  // Sans serif fallback
+  sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$headings-font-weight: 800;
+
+@import "bootstrap.scss";
+
+@mixin line-clamp($numLines: 1, $lineHeight: 1.5) {
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  display: block;
+  /* autoprefixer: off */
+  display: -webkit-box;
+  -webkit-line-clamp: $numLines;
+  -webkit-box-orient: vertical;
+  max-height: $numLines * $lineHeight + unquote('rem');
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $size, $length in $spacers {
+      .line-clamp#{$infix}-#{$size}  {
+        @include line-clamp($size);
+      }
+    }
+  }
+}
+
+.text-weigth-500 {
+  font-weight: 500;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+hr {
+  background-size: 1px;
+  border-top: 1px solid $secondary;
+  border-color: $secondary;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid $primary;
+}
+
+a:hover, a:focus {
+  color: $secondary;
+  text-decoration: none;
+  border-bottom: 2px solid $primary;
+}
+
+blockquote, .blockquote {
+  font-style: italic;
+  padding-left: 24px;
+  border-left: 4px solid $primary;
+}
+
+.blockquote-footer {
+  font-size: 16px;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: .1em .3em;
+}
+
+.gist {
+  margin-bottom: 30px;
+}
+
+.gatsby-highlight {
+  margin-bottom: 30px;
+
+  pre {
+    border-radius: .3em;
+  }
+}
+
+.icon-link {
+  color: $primary;
+  text-decoration: none;
+  border: 0;
+}
+
+.icon-link:hover, .icon-link:focus {
+  color: $secondary;
+  text-decoration: none;
+  border: 0;
+}
+
+.nav-logo {
+  text-decoration: none;
+  border: 0;
+}
+
+.nav-logo:hover, .nav-logo:focus, .nav-logo:active {
+  color: $primary;
+  text-decoration: none;
+  border: 0;
+}
+
+.nav-link {
+  display:inline-block;
+  border: 0;
+}
+
+.nav-link:hover, .nav-link:focus, .nav-link:active {
+  border: 0;
+}
+
+.nav-link:after {
+  display:block;
+  content: "";
+  border-bottom: solid 2px black;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.nav-link:hover:after, .nav-link:focus:after, .nav-link:active:after {
+  transform: scaleX(1);
+  transform-origin:  0% 50%;
+}
+
+.post {
+  p {
+    font-size: 18px;
+    line-height: 32px;
+    margin-bottom: 24px;
+  }
+
+  ul, ol {
+    font-size: 18px;
+    line-height: 28px;
+    margin-left: 16px;
+    padding-left: 12px;
+    padding-right: 16px;
+  }
+}
+
+.post-card {
+  a {
+    border: 0;
+    text-decoration: none;
+  }
+
+  a:hover, a:focus, a:active {
+    color: $primary;
+    text-decoration: none;
+    border-bottom: 2px solid $primary;
+  }
+
+  .post-date {
+    font-size: 16px;
+  }
+
+  .post-category {
+    font-size: 12px;
+  }
+
+  .post-title {
+    font-size: 18px;
+  }
+}
+
+footer {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
