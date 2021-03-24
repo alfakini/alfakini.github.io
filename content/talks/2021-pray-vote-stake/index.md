@@ -4,7 +4,7 @@ slug: pray-vote-stake
 abstract: A humanidade passa a algumas décadas por um processo de descentralização, nos trazendo até o momento atual onde tecnologias como Blockchain possibilitam a criação de modelos financeiros descentralizados. Apresentamos conceitos básicos de cripto-moedas, finanças descentralizadas e organizações autônomas descentralizadas.
 authors: Alan R. Fachini
 date: 2021-02-10T00:19:00-03:00
-category: Decentralized Finances
+category: Token Economy
 tags: ["economics", "history", "philosophy", "blockchain"]
 cover: ./cover.png
 images: []
