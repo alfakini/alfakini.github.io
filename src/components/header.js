@@ -21,6 +21,7 @@ const Header = () => {
         <Link to="/notes" className="p-2 nav-link text-weigth-500 text-decoration-none text-dark">Notes</Link> */}
         <a href="http://magrathealabs.com" className="p-2 nav-link text-weigth-500 text-decoration-none text-dark">Magrathea</a>
         <a href="http://makersnetwork.cc" className="p-2 nav-link text-weigth-500 text-decoration-none text-dark">Makers Network</a>
+        <a href="http://www.fablabjoinville.com.br/" className="p-2 nav-link text-weigth-500 text-decoration-none text-dark">Fab Lab</a>
       </nav>
       <Link to="#newsletter" className="btn btn-outline-primary py-2 px-4 me-md-2" role="button">Newsletter</Link>
     </header>
