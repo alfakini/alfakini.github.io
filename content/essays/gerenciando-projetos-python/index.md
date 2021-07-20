@@ -4,7 +4,7 @@ slug: gerenciando-projetos-python
 abstract: Como usar o Pipenv para gerenciar ambientes de desenvolvimento Python.
 authors: Alan R. Fachini
 date: 2018-05-02T00:01:25-03:00
-category: Software Engineering
+category: tutorial
 tags: ["python", "programming"]
 cover: ./cover.png
 images: ["./xkcd.png"]

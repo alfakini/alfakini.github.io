@@ -5,7 +5,7 @@ abstract: "Palestra realizada na Semana de Empreendedorismo e Inovação de Join
 authors: Alan R. Fachini
 date: 2021-06-11T00:19:00-03:00
 category: talk
-tags: ["engineering", "fablab", "maker"]
+tags: ["engineering", "fablab", "maker", "innovation"]
 cover: ./cover.png
 images: ["./cover.png"]
 published: true

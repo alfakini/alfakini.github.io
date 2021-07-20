@@ -4,7 +4,7 @@ slug: the-five-disfunctions-of-a-team
 abstract: Síntese do livro The Five Dysfunctions of a Team de Patrick Lencioni. O livro conta a história de uma empresa de tecnologia com problemas de competitividade no mercado. Uma nova CEO é contratada para resolver esses problemas e colocar a empresa novamente na liderança do mercado.
 authors: Alan R. Fachini
 date: 2019-08-05T00:01:25-03:00
-category: Books
+category: book review
 tags: ["teams", "leadership", "management"]
 cover: ./cover.png
 images: ["./book.png", "./disfunctions-pyramid.png", "./work-system.png"]

@@ -4,7 +4,7 @@ slug: o-hype-da-ia-e-o-que-me-preocupa
 abstract: Neste pequeno texto vou discutir alguns fatos recentes e como a reação de algumas pessoas, veículos de mídia e empresas fazem parecer que a Inteligência Artificial está muito mais avançada do que de fato está. Discutirei ainda quais são alguns dos problemas eminentes os quais não estamos dando a devida atenção.
 authors: Alan R. Fachini
 date: 2017-09-30T00:09:25-03:00
-category: Essays
+category: essay
 cover: ./cover.png
 images: ["./basic-math-dangerous-ai.jpg"]
 tags: ["artificial intelligence", "computer science", "politics"]

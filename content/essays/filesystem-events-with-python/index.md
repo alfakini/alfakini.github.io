@@ -4,7 +4,7 @@ slug: filesystem-events-with-python
 abstract: Recently I had to implement a shell utility to monitor when a file is added in a directory. In this post, I will describe how we used the watchdog Python library to implement the utility and the problems I faced in the way.
 authors: Alan R. Fachini
 date: 2018-10-23T13:17:13-03:00
-category: Software Engineering
+category: tutorial
 tags: ["python", "programming"]
 cover: ./cover.png
 images: ["./terminal.gif"]

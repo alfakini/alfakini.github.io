@@ -4,7 +4,7 @@ slug: sistemas-de-ideias
 abstract: Tudo aquilo que pensamos, toda ideia, é um modelo do mundo real. São palavras, equações, mapas, banco de dados ou programas de computador, abstrações da realidade ou projeções de como nós gostaria que a realidade fosse. A forma como vemos a realidade é só um modelo mental do que é a realidade de fato. Alguns modelos podem ser melhores que outros, mas certamente todos estão em algum nível, errados.
 authors: Alan R. Fachini
 date: 2019-06-02T20:17:13-03:00
-category: Essays
+category: essay
 tags: ["ideology", "systems theory"]
 cover: ./cover.png
 images: ["./raciocinio.png", "./ideologia.png"]

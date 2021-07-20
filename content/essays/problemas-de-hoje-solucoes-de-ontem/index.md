@@ -4,7 +4,7 @@ slug: problemas-de-hoje-solucoes-de-ontem
 abstract: Os problemas de comunicação parecem aumentar quanto mais a tecnologia se desenvolve. Ficamos muito mais eficientes em nos comunicarmos. Porém, os problemas de comunicação ainda persistem e as mensagens trocadas ainda carecem de qualidade.
 authors: Alan R. Fachini
 date: 2020-03-01T20:17:13-03:00
-category: Essays
+category: essay
 tags: ["knowledge", "system thinking"]
 cover: ./cover.png
 images: []

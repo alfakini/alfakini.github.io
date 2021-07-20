@@ -4,7 +4,7 @@ slug: arquiteturas-escalaveis
 abstract: O uso de dados ganharam mais relevância na tomada de decisão dentro das organizações e viraram um ativo indispensável para a evolução dos produtos. Fazer uso adequado dos dados disponíveis representa um diferencial de mercado.
 authors: Alan R. Fachini
 date: 2020-10-02T13:17:13-03:00
-category: Software Engineering
+category: essay
 tags: ["big data", "data engineering", "programming"]
 cover: ./cover.png
 images: ["./alto-acoplamento-micro-servicos.png", "./arquitetura-baseada-em-eventos.png"]

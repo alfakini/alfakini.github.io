@@ -4,7 +4,7 @@ slug: ruby-em-2020
 abstract: Ruby tem um histórico interessante de inovações que foram sendo absorvidas, e também criticadas, pela nossa indústria. Neste artigo falamos sobre o estado atual da linguagem de programação por trás do Ruby on Rails e sua comunidade.
 authors: Alan R. Fachini
 date: 2020-12-10T13:17:13-03:00
-category: Software Engineering
+category: essay
 tags: ["ruby", "programming"]
 cover: ./cover.png
 images: ["./banner.png"]

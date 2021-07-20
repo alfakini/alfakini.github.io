@@ -4,7 +4,7 @@ slug: papis-latam-2019
 abstract: Na última semana, entre os dias 24 e 26 de junho, aconteceu em São Paulo a terceira edição do PAPIs Latam, versão latino americana do evento que busca juntar a comunidade de praticantes de Aprendizado de Máquina (ML). Vou ao PAPIs desde a sua primeira edição como membro da comunidade Data Science Joinville, que apoia a organização do evento. Este ano participei também como voluntário na organização dos workshops no primeiro dia. Foi uma experiência única que me deu a oportunidade de dividir espaço e trocar ideias com quem está movimentando a comunidade de ML no Brasil. Neste artigo vou compartilhar um pouco sobre as minhas percepções do evento.
 authors: Alan R. Fachini
 date: 2019-06-29T21:49:44-03:00
-category: Community
+category: essay
 tags: ["papis", "conferences", "machine learning", "community"]
 cover: ./cover.png
 images: ["./the-god-papis.jpg", "./machine-learning-for-managers.jpg", "./deploy-dl-models-in-serverless-archtectures.", "./ifood.jpg", "./multi-task-classification.jpg", "./zap.jpg", "./ambev.jpg"]

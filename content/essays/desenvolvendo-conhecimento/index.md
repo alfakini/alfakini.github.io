@@ -4,7 +4,7 @@ slug: desenvolvendo-conhecimento
 abstract: Como desenvolver conhecimento? Enquanto algumas pessoas criaram seus próprios métodos de aprendizagem ou foram incentivadas a seguir alguns hábitos, outras simplesmente tratam o conteúdo como partes isoladas, e não conseguem organizar ele para que algo com mais valor seja extraído. Neste artigo falo um pouco sobre o que é conhecimento e como podemos desenvolver ele através de um processo estruturado.
 authors: Alan R. Fachini
 date: 2020-06-12T13:17:13-03:00
-category: Essays
+category: essay
 tags: ["knowledge", "note taking", "networked thought", "organizational theory"]
 cover: ./cover.png
 images: ["./ackoff-pyramid.png", "./cascata-gene-bellinger.png", "./data-info-knowledge-wisdom.png", "./data-info-knowledge-wisdom-together.png", "./luhmann-note.png", "./luhmann-zettelkasten.png", "./notes-network.png", "./note-tags.png", "./notes-bear.png"]

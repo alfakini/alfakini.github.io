@@ -4,7 +4,7 @@ slug: o-caminho-da-servidao
 abstract: Síntese do livro O caminho da Servidão, de Hayek, onde se discute a liberdade individual e os fundamentos do estado de direito, o individualismo e o coletivismo.
 authors: Alan R. Fachini
 date: 2019-07-02T00:01:25-03:00
-category: Books
+category: book review
 tags: ["economics", "politics", "history"]
 cover: ./cover.png
 images: ["./book.png"]

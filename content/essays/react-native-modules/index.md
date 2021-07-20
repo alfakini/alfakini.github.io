@@ -4,7 +4,7 @@ slug: react-native-modules
 abstract: Desenvolvendo um módulo nativo para iteroperabilidade do React Native com o iOS.
 authors: Alan R. Fachini
 date: 2018-09-28T20:17:13-03:00
-category: Software Engineering
+category: tutorial
 tags: ["react", "ios", "react native", "programming"]
 cover: ./cover.png
 images: ["./react-native.png"]
