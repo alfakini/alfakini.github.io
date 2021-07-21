@@ -1,6 +1,6 @@
 ---
 title: Bitcoin, a peer-to-peer electronic cash system
-slug: papers-we-love-bitcoin-a-peer-to-peer-electronic-cash-system
+slug: bitcoin-papers-we-love
 abstract: Apresentação do artigo realizada para o grupo Papers We Love de Joinville, com comentários e aprofundamentos sobre avanços recentes do protolo.
 authors: Alan R. Fachini
 date: 2021-01-20T00:19:00-03:00
