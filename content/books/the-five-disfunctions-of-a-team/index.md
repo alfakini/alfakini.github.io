@@ -17,13 +17,13 @@ Este artigo é um resumo do livro The Five Dysfunctions of a Team de Patrick Len
 
 ![Capa do livro The five Dysfunctions of a Team - Patrick Lencioni](./cover.png)
 
-Li este livro pela recomendação feita no livro [Scaling Up](https://www.goodreads.com/book/show/22212880-scaling-up?ac=1&from_search=true), um livro que usamos para estabelecer algumas das rotinas e ferramentas de gestão que usamos na Magrathea.
+Li este livro pela recomendação feita no livro [Scaling Up](https://www.goodreads.com/book/show/22212880-scaling-up), um livro que usamos para estabelecer algumas das rotinas e ferramentas de gestão que usamos na Magrathea.
 
-A história foca no time de diretoria e da ao entender que o time mais importante de uma empresa é a diretoria, pois são essas pessoas que tem capacidade de liderança para mudar uma organização. Não sei se concordo com essa visão. De fato a liderança é um dos maiores pontos de alavancagem de um sistema social, como mostra a Donella Meadows em "Thinking in Systems: A Primer", mas essa capacidade de liderança é essencial também no nível operacional e técnico das empresas.
+A história foca no time de diretoria e da ao entender que o time mais importante de uma empresa é a diretoria, pois são essas pessoas que tem capacidade de liderança para mudar uma organização. Não sei se concordo com essa visão. De fato a liderança é um dos maiores pontos de alavancagem de um sistema social, como mostra a Donella Meadows em [Thinking in Systems: A Primer](https://www.goodreads.com/book/show/3828902-thinking-in-systems), mas essa capacidade de liderança é essencial também no nível operacional e técnico das empresas.
 
 No decorrer da história a CEO guia o time para resolver seus problemas, conflitos e até questões individuais usando o modelo das 5 disfunções de um time que aparentemente aprendeu no decorrer da sua vida como técnica e professora.
 
-Outro problema que vejo na abordagem do autor é o foco na estrutura hierarquica das empresas tradicionais, com foco em diretores e gerentes. O tipo de organização que estamos criando quando adotamos abordagens ágeis e modelos de gestão como o Management 3.0 não está alinhada com esta visão. Mas entendo que este era o contexto histórico onde o livro foi concebido, e que podemos extrair valor e aprender com as ideias que ele articula.
+Outro problema que vejo na abordagem do autor é o foco na estrutura hierarquica das empresas tradicionais, com foco em diretores e gerentes. O tipo de organização que estamos criando quando adotamos abordagens ágeis e modelos de gestão como o [Management 3.0](https://www.goodreads.com/book/show/10210821-management-3-0) não está alinhada com essa visão. Mas entendo que esse era o contexto histórico onde o livro foi concebido, e que podemos extrair valor e aprender com as ideias que ele articula.
 
 ## As cinco disfunções
 
