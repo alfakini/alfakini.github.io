@@ -19,7 +19,7 @@ Em "O Caminho da Servidão" a coisa foi diferente, por isso, resolvi escrever so
 
 ![Capa do livro O Caminho da Servidão](./book.png)
 
-Ao ler livros com teor ideológico gosto de considerar o contexto em que os autores se encontram, de tentar entender o motivo deles estarem expondo suas ideias para o mundo.  Quando Hayek escreveu este livro ele vivia na Inglaterra e viu seu país e os Estados Unidos seguindo um caminho que acreditava levar aos mesmos erros que levaram a Alemanha ao nazismo e aos priores tempos na União Soviética.
+Ao ler livros com teor ideológico gosto de considerar o contexto em que os autores se encontram, de tentar entender o motivo deles estarem expondo suas ideias para o mundo.  Quando Hayek escreveu este livro ele vivia na Inglaterra e viu seu país e os Estados Unidos seguindo um caminho que acreditava levar aos mesmos erros que levaram a Alemanha ao nazismo e aos piores tempos na União Soviética.
 
 O argumento central do texto é de que políticas que nos levem em direção a uma sociedade coletivista, sejam de tendência de esquerda ou de direita, são incompatíveis com a ideia de estado de direito e inevitavelmente nos levam à tirania. O planejamento econômico central dá muito poder ao governo, o que essencialmente o coloca nas mãos de um pequeno grupo e tira de cada indivíduo. Inevitavelmente este poder será usado contra os indivíduos em prol de uma visão ideal de futuro coletivista. Para Hayek o coletivismo é equivocado, dado que só é possível existir uma ideia coletiva em uma sociedade totalmente coesa e, isto é, se não impossível, improvável de acontecer.
 
