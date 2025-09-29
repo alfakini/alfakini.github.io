@@ -2,10 +2,10 @@
   "name": "alfakini.github.io",
   "private": true,
   "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./src/output.css",
-    "watch": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    "build:vcard": "tailwindcss -i ./vcard/style/input.css -o ./vcard/style/output.css",
-    "watch:vcard": "tailwindcss -i ./vcard/style/input.css -o ./vcard/style/output.css --watch"
+    "build": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./src/output.css --minify --watch",
+    "build:vcard": "tailwindcss -i ./vcard/style/input.css -o ./vcard/style/output.css --minify",
+    "watch:vcard": "tailwindcss -i ./vcard/style/input.css -o ./vcard/style/output.css --minify --watch"
   },
   "devDependencies": {
     "tailwindcss": "^4.1.13",

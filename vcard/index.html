@@ -71,6 +71,10 @@
   }
   </script>
 
+  <!-- Resource hints for better performance -->
+  <link rel="preload" href="images/header-380w.webp" as="image" type="image/webp">
+  <link rel="preload" href="images/profile.webp" as="image" type="image/webp">
+
   <link rel="stylesheet" href="style/output.css">
 </head>
 <body class="page-layout">
@@ -79,18 +83,44 @@
   <main id="main-content" class="vcard-container" role="main" aria-label="Digital business card for Alan Rafael Fachini" itemscope itemtype="https://schema.org/Person">
     <header class="header-section">
       <div class="header-image-wrapper">
-        <img src="images/header.png" alt="Fab Lab Joinville robots photo" class="header-image" role="presentation">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="images/header-380w.webp 380w,
+                    images/header-600w.webp 600w,
+                    images/header.webp 800w"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px">
+          <img
+            src="images/header.jpg"
+            srcset="images/header-380w.jpg 380w,
+                    images/header-600w.jpg 600w,
+                    images/header.jpg 800w"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+            alt="Fab Lab Joinville robots photo"
+            class="header-image"
+            width="800"
+            height="419"
+            fetchpriority="high"
+            loading="eager">
+        </picture>
         <div class="header-overlay" aria-hidden="true"></div>
       </div>
 
       <div class="profile-container">
-        <img
-          src="images/profile.png"
-          alt="Photo of Alan Rafael Fachini"
-          class="profile-image"
-          itemprop="image"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-        >
+        <picture>
+          <source srcset="images/profile.webp" type="image/webp">
+          <img
+            src="images/profile.jpg"
+            alt="Photo of Alan Rafael Fachini"
+            class="profile-image"
+            itemprop="image"
+            width="400"
+            height="400"
+            fetchpriority="high"
+            loading="eager"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+          >
+        </picture>
         <div class="profile-fallback" aria-label="AF initials">AF</div>
       </div>
     </header>
