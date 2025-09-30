@@ -1,20 +1,18 @@
 BEGIN:VCARD
-VERSION:4.0
+VERSION:3.0
+PRODID:-//Apple Inc.//macOS 15.0.1//EN
+N:Fachini;Alan;Rafael;;
 FN:Alan Rafael Fachini
-N:Fachini;Alan;Rafael
 NICKNAME:alfakini
-PHOTO:https://alanfachini.com/vcard/images/profile.png
-LANG;PREF=1:en
-LANG;PREF=2:pt-BR
-TZ:America/Sao_Paulo
-EMAIL;TYPE=INTERNET,work;PREF=1:hi@alanfachini.com
-TEL;TYPE=VOICE,CELL;PREF=1:+5547991552269
-CALADRURI;PREF=1:MAILTO:hi@alanfachini.com
-ADR;TYPE=work:Rua Orestes Guimaraes, 876, 4o andar;Joinville, Santa Catarina;89204-060;Brazil
-URL;TYPE=work:https://linkedin.com/in/alanfachini
-URL;TYPE=work:https://github.com/alfakini
-URL;TYPE=home:https://alanfachini.com
-URL;TYPE=work:https://fablabjoinville.com.br
-URL;TYPE=work:https://joinvalle.com.br
-NOTE:Board Director at Join.valle\nBoard Director at Fab Lab Joinville\nEngineering Manager at Trusted Health
+ORG:Trusted Health;
+TITLE:Engineering Manager
+EMAIL;type=INTERNET;type=WORK;type=pref:hi@alanfachini.com
+TEL;type=CELL;type=VOICE;type=pref:+5547991552269
+ADR;type=WORK;type=pref:;;Rua Orestes Guimaraes\, 876\, 4o andar;Joinville;SantaCatarina;89204-060;Brazil
+NOTE:Board Director at Join.valle and Fab Lab Joinville. Engineering Manager at Trusted Health.
+URL;type=WORK;type=pref:https://linkedin.com/in/alanfachini
+URL;type=WORK:https://fablabjoinville.com.br
+URL;type=WORK:https://github.com/alfakini
+URL;type=HOME:https://alanfachini.com
+URL;type=WORK:https://joinvalle.com.br
 END:VCARD
