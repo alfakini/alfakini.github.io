@@ -276,10 +276,15 @@ main > *,
 	color: #888;
 }
 
-.eyebrow,
-.essay-header > .sans {
+.eyebrow {
 	width: 55%;
 	margin-bottom: 0.5rem;
+}
+
+.essay-header > .sans {
+	width: 55%;
+	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 .section-heading {
@@ -378,7 +383,7 @@ main > *,
 }
 
 .essay-header h1 {
-	margin-top: 1.5rem;
+	margin-top: 0.75rem;
 	text-wrap: balance;
 }
 

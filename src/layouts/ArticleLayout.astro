@@ -23,7 +23,6 @@ const hasTags = essay.data.tags.length > 0;
 				{essay.data.updatedDate && <> · {updatedLabel} <FormattedDate date={essay.data.updatedDate} lang={lang} /></>}
 			</p>
 			<h1>{essay.data.title}</h1>
-			<p class="subtitle">{essay.data.description}</p>
 		</header>
 		{essay.data.heroImage && <figure class="hero-image">
 			<Image src={essay.data.heroImage} widths={[640, 960, 1280]} sizes="(max-width: 760px) 84vw, 48vw" alt="" />
