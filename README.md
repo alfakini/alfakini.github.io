@@ -142,4 +142,6 @@ Build command: bun run build
 Output directory: dist
 ```
 
-`astro.config.mjs` defines the canonical site URL, and `public/CNAME` is copied to the build output. Configure the Pages provider to install dependencies with Bun, run the build command, publish `dist`, and enforce HTTPS after DNS is active.
+`astro.config.mjs` defines the canonical site URL, and `public/CNAME` is copied to the build output. The GitHub Actions workflow at `.github/workflows/deploy.yml` builds and deploys each push to `main`.
+
+In the repository, go to **Settings > Pages** and set **Build and deployment > Source** to **GitHub Actions**. After the first workflow succeeds, set `alanfachini.com` as the custom domain and enable **Enforce HTTPS** once GitHub confirms the DNS configuration.
