@@ -52,8 +52,8 @@ Os problemas que temos que resolver são políticos e difíceis de solucionar: q
 
 Com informação abundante, o desafio é decidir em que prestar atenção, como interpretá-la e quando suspender o julgamento. Preservar o debate racional exige tempo, escuta, abertura à revisão e compromisso com os fatos. A inteligência artificial amplia nossa capacidade de produzir respostas, mas a racionalidade, a confiança e o consenso continuam difíceis de construir. A racionalidade começa quando interrompemos a reação automática. Quando tudo exige uma resposta imediata, pensar é também saber esperar.
 
-[^debate]: https://www.youtube.com/watch?v=LtnCZPWMqLM
-[^ideologia]: https://www.drorpoleg.com/the-rise-of-synthetic-ideology/
-[^artificial]: https://newsletter.drorpoleg.com/p/intelligence-is-not-the-bottleneck
-[^vigilancia]: https://fortune.com/2025/09/28/larry-ellison-ai-surveillance-oracle-tiktok-deal-social-media/
 
+[^debate]: Vídeo de Filipe Boni: [Por que "1 x 30" não é debate, é só cilada](https://www.youtube.com/watch?v=LtnCZPWMqLM)
+[^ideologia]: Artigo de Dror Poleg sobre o surgimento de ideologias moldadas por sistemas generativos: [The Rise of Synthetic Ideology](https://www.drorpoleg.com/the-rise-of-synthetic-ideology/)
+[^artificial]: Artigo de Dror Poleg sobre os limites da inteligência como solução para problemas sociais e políticos: [Intelligence Is Not the Bottleneck](https://newsletter.drorpoleg.com/p/intelligence-is-not-the-bottleneck)
+[^vigilancia]: Reportagem sobre as declarações de Larry Ellison a respeito do uso de inteligência artificial para vigilância: [Larry Ellison on AI surveillance](https://fortune.com/2025/09/28/larry-ellison-ai-surveillance-oracle-tiktok-deal-social-media/)
