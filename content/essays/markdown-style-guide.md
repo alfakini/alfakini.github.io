@@ -64,13 +64,13 @@ The blockquote element represents content that is quoted from another source, op
 
 ```markdown
 > Don't communicate by sharing memory, share memory by communicating.  
-> — *Rob Pike[^1]*
+> — *Rob Pike*[^1]
 ```
 
 #### Output
 
 > Don't communicate by sharing memory, share memory by communicating.  
-> — *Rob Pike[^1]*
+> — *Rob Pike*[^1]
 
 [^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
 
@@ -183,31 +183,3 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 - Dairy
   - Milk
   - Cheese
-
-## Other Elements — sub, sup, kbd, mark
-
-### Syntax
-
-```markdown
-GIF (Graphics Interchange Format) is a bitmap image format.
-
-H<sub>2</sub>O
-
-X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
-
-Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
-
-Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
-```
-
-### Output
-
-GIF (Graphics Interchange Format) is a bitmap image format.
-
-H<sub>2</sub>O
-
-X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
-
-Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
-
-Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
