@@ -589,8 +589,8 @@ main > *,
 }
 
 .prose blockquote .sidenote {
-	min-width: 59%;
-	margin-right: -82%;
+	width: 30%;
+	margin-right: -40%;
 }
 
 .prose input.margin-toggle,
