@@ -1,0 +1,28 @@
+---
+import type { ImageMetadata } from 'astro';
+import BaseHead from '../components/BaseHead.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { localeCode, type Locale } from '../lib/essays';
+import '../styles/site.css';
+
+interface Props {
+	title: string; description: string; image?: ImageMetadata; type?: 'website' | 'article'; lang?: Locale;
+	pubDate?: Date; updatedDate?: Date; tags?: string[]; alternates?: Array<{ lang: Locale; href: string }>;
+}
+const { lang = 'pt', alternates = [], ...head } = Astro.props;
+---
+
+<!doctype html>
+<html lang={localeCode(lang)}>
+	<head>
+		<BaseHead {...head} {lang} {alternates} />
+	</head>
+	<body>
+		<SiteHeader {lang} {alternates} />
+		<main id="conteudo">
+			<slot />
+		</main>
+		<SiteFooter {lang} />
+	</body>
+</html>

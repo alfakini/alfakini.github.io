@@ -1,0 +1,25 @@
+---
+import PostList from '../../components/PostList.astro';
+import { SITE_TITLE } from '../../consts';
+import { allTags, getEssayLanguages, getEssays, tagSlug, type Essay, type EssayTag } from '../../lib/essays';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const essays = await getEssays();
+	return allTags(essays).map((tag) => ({
+		params: { tag: tag.slug },
+		props: { tag, essays: essays.filter((essay) => essay.data.tags.some((name) => tagSlug(name) === tag.slug)) },
+	}));
+}
+
+interface Props { tag: EssayTag; essays: Essay[] }
+const { tag, essays } = Astro.props;
+const languages = await getEssayLanguages();
+---
+
+<BaseLayout title={`${tag.name} | ${SITE_TITLE}`} description={`Ensaios sobre ${tag.name}.`}>
+	<header class="page-header">
+		<h1>Tag: {tag.name}</h1>
+	</header>
+	<PostList {essays} {languages} />
+</BaseLayout>

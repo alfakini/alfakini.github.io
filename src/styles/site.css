@@ -1,0 +1,857 @@
+@import "@fontsource/jetbrains-mono/700.css";
+@import "katex/dist/katex.min.css";
+
+@font-face {
+	font-family: "et-book";
+	src: url("../assets/fonts/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff") format("woff");
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "et-book";
+	src: url("../assets/fonts/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff")
+		format("woff");
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "et-book";
+	src: url("../assets/fonts/et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff") format("woff");
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "et-book-roman-old-style";
+	src: url("../assets/fonts/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff")
+		format("woff");
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Courier Prime";
+	src: url("../assets/fonts/courier-prime/courier-prime-latin-400-normal.woff2") format("woff2");
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Courier Prime";
+	src: url("../assets/fonts/courier-prime/courier-prime-latin-400-italic.woff2") format("woff2");
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Courier Prime";
+	src: url("../assets/fonts/courier-prime/courier-prime-latin-700-normal.woff2") format("woff2");
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Courier Prime";
+	src: url("../assets/fonts/courier-prime/courier-prime-latin-700-italic.woff2") format("woff2");
+	font-style: italic;
+	font-weight: 700;
+	font-display: swap;
+}
+
+html {
+	font-size: 15px;
+}
+
+body {
+	width: 87.5%;
+	max-width: 1400px;
+	min-height: 100vh;
+	margin-inline: auto;
+	font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	background-color: #ffffff;
+	color: #111;
+	counter-reset: sidenote-counter;
+}
+
+main {
+	display: block;
+}
+
+h1 {
+	margin-top: 4rem;
+	margin-bottom: 1.5rem;
+	font-size: 3.2rem;
+	font-weight: 400;
+	line-height: 1;
+}
+
+h2 {
+	margin-top: 2.1rem;
+	margin-bottom: 1.4rem;
+	font-size: 2.2rem;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1;
+}
+
+h3 {
+	margin-top: 2rem;
+	margin-bottom: 1.4rem;
+	font-size: 1.7rem;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1;
+}
+
+a:link,
+a:visited {
+	color: inherit;
+	text-decoration-thickness: 0.05em;
+	text-underline-offset: 0.1em;
+}
+
+.sans {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+	letter-spacing: 0.03em;
+}
+
+body > :is(header, main, footer),
+main > *,
+.page-header > *,
+.essay-article > *,
+.essay-header > *,
+.prose > * {
+	margin-inline: auto;
+}
+
+.skip-link {
+	position: absolute;
+	top: 0;
+	left: 12.5%;
+	z-index: 10;
+	padding: 0.5rem 0.75rem;
+	background: #ffffff;
+	color: #111;
+	transform: translateY(-120%);
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+}
+
+.site-header,
+.site-footer,
+.section-heading {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1.5rem;
+}
+
+.site-header {
+	justify-content: flex-start;
+	width: 55%;
+	padding: 1.5rem 0 0.75rem;
+	font-size: 1.4rem;
+	line-height: 2rem;
+}
+
+.site-header .site-name {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 1.6rem;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	line-height: 1.333333;
+	text-decoration: none;
+}
+
+.site-name [data-scramble-character] {
+	display: inline-block;
+}
+
+.site-name .site-name-space {
+	margin-inline-end: 0.4ch;
+}
+
+.site-name [data-scramble-character].is-scrambled {
+	color: #111;
+}
+
+.site-name.is-scrambling {
+	animation: site-name-reveal 1200ms cubic-bezier(0.25, 0.4, 0.25, 1) both;
+}
+
+@keyframes site-name-reveal {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.site-header nav,
+.site-header ul,
+.site-footer nav,
+.tag-list {
+	margin: 0;
+	padding: 0;
+}
+
+.site-header ul,
+.tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1.5rem;
+	list-style: none;
+}
+
+.site-header li,
+.tag-list li {
+	margin: 0;
+}
+
+.site-header a[aria-current="page"] {
+	text-decoration: none;
+}
+
+.header-nav {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5rem;
+	margin-inline-start: auto;
+}
+
+.site-footer {
+	width: 55%;
+	margin-block: 4rem 2rem;
+	color: #666;
+	font-size: 0.9rem;
+}
+
+.site-footer p,
+.site-footer nav {
+	margin: 0;
+	font-size: inherit;
+	line-height: 1.4;
+}
+
+.site-footer nav {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.home-intro,
+.page-header {
+	padding: 3rem 0 1rem;
+}
+
+.home-intro h1,
+.home-intro .subtitle,
+.page-header h1,
+.post-list,
+.tag-index {
+	width: 55%;
+	margin-top: 0;
+}
+
+.eyebrow,
+.post-list-date,
+.essay-header > .sans {
+	font-size: 1rem;
+	line-height: 1.4;
+}
+
+.essay-header > .sans {
+	color: #888;
+}
+
+.eyebrow,
+.essay-header > .sans {
+	width: 55%;
+	margin-bottom: 0.5rem;
+}
+
+.section-heading {
+	width: 90%;
+	margin-bottom: 1rem;
+	padding-bottom: 0.75rem;
+	border-bottom: 1px solid currentColor;
+}
+
+.section-heading h2,
+.section-heading a {
+	margin: 0;
+}
+
+.post-list,
+.tag-index {
+	margin-block: 0;
+	padding: 0;
+	font-size: 1.4rem;
+	line-height: 2rem;
+	list-style: none;
+}
+
+.post-list > li {
+	display: grid;
+	grid-template-columns: 9rem minmax(0, 1fr);
+	column-gap: 1.5rem;
+	padding: 1.5rem 0;
+	border-bottom: 1px solid currentColor;
+}
+
+.post-list > li:first-child {
+	padding-top: 0;
+}
+
+.post-list > li > * {
+	grid-column: 2;
+	margin-top: 0;
+	margin-bottom: 0.6rem;
+}
+
+.post-list > li > :last-child {
+	margin-bottom: 0;
+}
+
+.post-list .post-list-date {
+	grid-row: 1 / span 4;
+	grid-column: 1;
+	text-align: right;
+}
+
+.post-list-languages {
+	display: block;
+	text-align: right;
+}
+
+.post-list h2 {
+	font-size: 1.8rem;
+}
+
+.post-list h2 a,
+.tag-index a {
+	text-decoration: none;
+}
+
+.post-list p,
+.post-list ul {
+	width: auto;
+	font-size: 1.15rem;
+	line-height: 1.55;
+}
+
+.tag-index > li {
+	margin: 0;
+}
+
+.tag-index a {
+	display: flex;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding: 0.75rem 0;
+	border-bottom: 1px solid currentColor;
+}
+
+.tag-index small {
+	font-size: 1rem;
+}
+
+.essay-article {
+	padding-top: 1.5rem;
+	padding-bottom: 0;
+}
+
+.essay-header > :is(h1, p, nav) {
+	width: 55%;
+}
+
+.essay-header h1 {
+	margin-top: 1.5rem;
+	text-wrap: balance;
+}
+
+.essay-header .subtitle {
+	display: block;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	font-size: 1.8rem;
+	font-style: italic;
+	line-height: 1.25;
+}
+
+.hero-image {
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+	padding: 0;
+	border: 0;
+	max-width: 55%;
+}
+
+.hero-image img {
+	width: 100%;
+}
+
+.prose {
+	padding-block: 1rem;
+}
+
+.prose > :is(p, dl, ol, ul),
+.prose blockquote {
+	font-size: 1.4rem;
+	line-height: 2rem;
+}
+
+.prose p {
+	margin-top: 1.4rem;
+	margin-bottom: 1.4rem;
+	padding-right: 0;
+	vertical-align: baseline;
+}
+
+.prose > :is(p, footer, table) {
+	width: 55%;
+}
+
+.prose > :is(dl, ol, ul) {
+	width: 50%;
+	padding-inline-start: 5%;
+}
+
+.prose :is(dt, li):not(:first-child) {
+	margin-top: 0.25rem;
+}
+
+.prose > hr {
+	width: 55%;
+	height: 1px;
+	margin-block: 1em;
+	padding: 0;
+	border: 0;
+	border-top: 1px solid #ccc;
+}
+
+.prose sup {
+	line-height: 0;
+}
+
+.prose > :is(img, video),
+.prose > p > :is(img, video) {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.prose > :is(img, video) {
+	width: 55%;
+}
+
+.prose > p > :is(img, video) {
+	width: 100%;
+}
+
+.prose > figure {
+	max-width: 55%;
+	margin: 0 auto 3em;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.prose > figure img {
+	width: 100%;
+}
+
+.prose > :is(h1, h2, h3, h4, h5, h6) {
+	width: 55%;
+}
+
+.prose > blockquote {
+	width: 55%;
+	padding-left: 1.25rem;
+	border-left: 0.15rem solid #ccc;
+}
+
+.prose > blockquote > :is(p, footer) {
+	width: auto;
+	margin-right: 0;
+}
+
+.prose blockquote footer {
+	font-size: 1.1rem;
+	text-align: right;
+}
+
+.prose > :first-child {
+	margin-top: 0;
+}
+
+.prose blockquote footer::before {
+	content: "— ";
+}
+
+.prose figcaption {
+	position: relative;
+	float: right;
+	clear: right;
+	max-width: 40%;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 1.1rem;
+	line-height: 1.6;
+	text-align: left;
+	vertical-align: baseline;
+}
+
+.prose table {
+	border-collapse: collapse;
+}
+
+.prose th,
+.prose td {
+	padding: 0.35rem 0.6rem;
+	text-align: left;
+	vertical-align: top;
+}
+
+.prose thead {
+	border-bottom: 1px solid currentColor;
+}
+
+.prose details {
+	width: 55%;
+}
+
+.prose .example {
+	padding-left: 2.5%;
+	border-left: 1px solid #ccc;
+}
+
+.prose .example > :first-child {
+	margin-top: 0;
+}
+
+.prose .example > :last-child {
+	margin-bottom: 0;
+}
+
+.prose .sidenote[role="note"] {
+	text-align: left;
+}
+
+.prose .sidenote {
+	position: relative;
+	float: right;
+	clear: right;
+	width: 33.333333%;
+	margin-top: 0.3rem;
+	margin-right: -43.333333%;
+	margin-bottom: 0;
+	font-size: 1.1rem;
+	line-height: 1.3;
+	vertical-align: baseline;
+}
+
+.prose .sidenote-number {
+	counter-increment: sidenote-counter;
+}
+
+.prose .sidenote-number::after,
+.prose .sidenote::before {
+	position: relative;
+	font-family: et-book-roman-old-style, serif;
+	vertical-align: baseline;
+}
+
+.prose .sidenote-number::after {
+	top: -0.5rem;
+	left: 0.1rem;
+	font-size: 1rem;
+	content: counter(sidenote-counter);
+}
+
+.prose .sidenote::before {
+	top: -0.5rem;
+	font-size: 1rem;
+	content: counter(sidenote-counter) " ";
+}
+
+.prose blockquote .sidenote {
+	min-width: 59%;
+	margin-right: -82%;
+}
+
+.prose input.margin-toggle,
+.prose label.margin-toggle:not(.sidenote-number) {
+	display: none;
+}
+
+.prose label.sidenote-number {
+	display: inline-block;
+	max-height: 2rem;
+}
+
+.prose code,
+.prose pre > code {
+	font-family: "Courier Prime", monospace;
+	font-size: 1rem;
+	line-height: 1.42;
+	-webkit-text-size-adjust: 100%;
+}
+
+.prose :is(h1, h2, h3) > code {
+	font-size: 0.8em;
+}
+
+.prose .sidenote > code {
+	font-size: 1rem;
+}
+
+.prose pre > code {
+	display: block;
+	width: 52.5%;
+	margin-inline: auto;
+	font-size: 0.9rem;
+	overflow-x: auto;
+}
+
+.prose .newthought {
+	font-variant: small-caps;
+	font-size: 1.2em;
+}
+
+.prose .katex-display {
+	width: 55%;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.prose pre.astro-code {
+	width: 55%;
+	padding: 1rem;
+	border: 1px solid #ccc;
+	background-color: var(--shiki-light-bg);
+	color: var(--shiki-light);
+	overflow-x: auto;
+}
+
+.prose pre.astro-code span {
+	color: var(--shiki-light);
+}
+
+.prose pre.astro-code > code {
+	width: auto;
+	margin-inline: 0;
+}
+
+.essay-footer {
+	width: 55%;
+	margin-top: 0;
+	padding-top: 1rem;
+	border-top: 1px solid currentColor;
+}
+
+.essay-footer .tag-list {
+	width: auto;
+	font-size: 1rem;
+	line-height: 1.4;
+}
+
+.essay-footnotes {
+	font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+}
+
+.essay-footnotes h2 {
+	margin: 0 0 1rem;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+	font-size: 1.2rem;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.essay-footnotes ol {
+	width: auto;
+	margin: 0;
+	padding-left: 1.5rem;
+}
+
+.essay-footnotes li {
+	font-size: 1.1rem;
+	line-height: 1.4;
+}
+
+.essay-footnotes .sidenote {
+	display: inline;
+	float: none;
+	width: auto;
+	margin: 0;
+	font-size: inherit;
+	line-height: inherit;
+	position: static;
+}
+
+.essay-footnotes .sidenote::before {
+	content: none;
+}
+
+.essay-footnotes:not([hidden]) + .tag-list {
+	margin-top: 1.5rem;
+	padding-top: 1rem;
+	border-top: 1px solid currentColor;
+}
+
+.footnote-reference {
+	position: relative;
+	top: -0.5rem;
+	left: 0.1rem;
+	font-family: et-book-roman-old-style, serif;
+	font-size: 1rem;
+}
+
+.footnote-backlink {
+	font-size: 0.8em;
+	white-space: nowrap;
+}
+
+:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 0.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.site-name.is-scrambling {
+		animation: none;
+	}
+}
+
+@media (min-width: 761px) {
+	body {
+		padding-left: 0;
+	}
+}
+
+@media (max-width: 760px) {
+	body {
+		width: 84%;
+		padding-inline: 8%;
+	}
+
+	.site-header {
+		gap: 1rem;
+	}
+
+	.prose > :is(img, video),
+	.prose > p > :is(img, video) {
+		width: 100%;
+	}
+
+	.site-header,
+	.site-footer,
+	.section-heading,
+	.post-list,
+	.tag-index,
+	.home-intro h1,
+	.home-intro .subtitle,
+	.page-header h1,
+	.eyebrow,
+	.essay-header > .sans,
+	.essay-header > :is(h1, p, nav),
+	.prose > :is(h1, h2, h3, h4, h5, h6),
+	.prose > blockquote,
+	.prose details,
+	.prose .katex-display,
+	.prose pre.astro-code,
+	.essay-footer {
+		width: 100%;
+		max-width: none;
+	}
+
+	.prose > :is(p, footer, table, hr) {
+		width: 100%;
+		max-width: none;
+	}
+
+	.hero-image,
+	.prose > figure {
+		max-width: 90%;
+	}
+
+	.prose > :is(dl, ol, ul) {
+		width: 90%;
+	}
+
+	.prose figcaption {
+		float: none;
+		max-width: none;
+	}
+
+	.site-footer,
+	.section-heading {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.site-footer nav {
+		flex-wrap: wrap;
+	}
+
+	.post-list > li {
+		display: block;
+	}
+
+	.post-list .post-list-date {
+		margin-bottom: 0.75rem;
+	}
+
+	.prose .example {
+		padding-left: 1rem;
+	}
+
+	.prose label.margin-toggle:not(.sidenote-number) {
+		display: inline;
+	}
+
+	.prose .sidenote {
+		display: none;
+	}
+
+	.prose .margin-toggle:checked + .sidenote {
+		position: relative;
+		left: 1rem;
+		display: block;
+		float: left;
+		clear: both;
+		width: 95%;
+		margin: 1rem 2.5%;
+		vertical-align: baseline;
+	}
+
+	.prose label {
+		cursor: pointer;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.prose pre.astro-code {
+		border-color: #555;
+		background-color: var(--shiki-dark-bg);
+		color: var(--shiki-dark);
+	}
+
+	.prose pre.astro-code span {
+		color: var(--shiki-dark);
+	}
+}

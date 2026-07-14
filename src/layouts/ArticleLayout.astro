@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import type { Essay } from '../lib/essays';
+import { essayIdentity, essayPath, tagSlug } from '../lib/essays';
+import FormattedDate from '../components/FormattedDate.astro';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props { essay: Essay; translations: Essay[] }
+const { essay, translations } = Astro.props;
+const { lang } = essayIdentity(essay);
+const alternates = translations.map((translation) => ({ lang: essayIdentity(translation).lang, href: essayPath(translation) }));
+const updatedLabel = lang === 'pt' ? 'Atualizado em' : 'Updated';
+const notesLabel = lang === 'pt' ? 'Notas' : 'Notes';
+const noteLabel = lang === 'pt' ? 'Ver nota' : 'See note';
+const hasTags = essay.data.tags.length > 0;
+---
+
+<BaseLayout title={essay.data.title} description={essay.data.description} image={essay.data.heroImage} type="article" lang={lang} pubDate={essay.data.pubDate} updatedDate={essay.data.updatedDate} tags={essay.data.tags} alternates={alternates}>
+	<article class="essay-article">
+		<header class="essay-header">
+			<p class="sans">
+				<FormattedDate date={essay.data.pubDate} lang={lang} />
+				{essay.data.updatedDate && <> · {updatedLabel} <FormattedDate date={essay.data.updatedDate} lang={lang} /></>}
+			</p>
+			<h1>{essay.data.title}</h1>
+			<p class="subtitle">{essay.data.description}</p>
+		</header>
+		{essay.data.heroImage && <figure class="hero-image">
+			<Image src={essay.data.heroImage} widths={[640, 960, 1280]} sizes="(max-width: 760px) 84vw, 48vw" alt="" />
+		</figure>}
+		<section class="prose">
+			<slot />
+		</section>
+		<footer class="essay-footer sans" data-has-tags={hasTags} data-note-label={noteLabel} hidden={!hasTags}>
+			<div class="essay-footnotes" hidden>
+				<h2>{notesLabel}</h2>
+				<ol></ol>
+			</div>
+			{hasTags && <ul class="tag-list" aria-label="Tags">
+				{essay.data.tags.map((tag) => <li><a href={`/tags/${tagSlug(tag)}/`}>#{tag}</a></li>)}
+			</ul>}
+		</footer>
+	</article>
+</BaseLayout>
+
+<script>
+	const article = document.querySelector('.essay-article');
+	const footer = article?.querySelector('.essay-footer');
+	const footnotes = footer?.querySelector('.essay-footnotes');
+	const list = footnotes?.querySelector('ol');
+	const narrowLayout = window.matchMedia('(max-width: 760px)');
+
+	if (article && footer instanceof HTMLElement && footnotes instanceof HTMLElement && list) {
+		const notes = [...article.querySelectorAll('.prose label.sidenote-number')].flatMap((label, index) => {
+			const input = label.nextElementSibling;
+			const note = input?.nextElementSibling;
+			if (!(label instanceof HTMLLabelElement) || !(input instanceof HTMLInputElement) || !(note instanceof HTMLElement) || !note.classList.contains('sidenote')) return [];
+
+			const reference = document.createElement('a');
+			reference.className = 'footnote-reference';
+			reference.href = `#${note.id}`;
+			reference.id = label.id;
+			reference.textContent = String(index + 1);
+			reference.setAttribute('aria-label', `${footer.dataset.noteLabel} ${index + 1}`);
+
+			const item = document.createElement('li');
+			return [{ label, input, note, reference, item }];
+		});
+
+		const updateFootnotes = () => {
+			if (narrowLayout.matches && notes.length > 0) {
+				for (const { label, note, reference, item } of notes) {
+					label.replaceWith(reference);
+					item.append(note);
+					list.append(item);
+				}
+				footnotes.hidden = false;
+				footer.hidden = false;
+				return;
+			}
+
+			for (const { label, input, note, reference, item } of notes) {
+				reference.replaceWith(label);
+				input.after(note);
+				item.remove();
+			}
+			footnotes.hidden = true;
+			footer.hidden = footer.dataset.hasTags !== 'true';
+		};
+
+		updateFootnotes();
+		narrowLayout.addEventListener('change', updateFootnotes);
+	}
+</script>

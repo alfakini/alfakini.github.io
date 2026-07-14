@@ -1,0 +1,16 @@
+---
+import PostList from '../components/PostList.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getEssayLanguages, getEssays } from '../lib/essays';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const essays = (await getEssays()).slice(0, 5);
+const languages = await getEssayLanguages();
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<header class="page-header home-intro">
+		<h1>Essays</h1>
+	</header>
+	<PostList essays={essays} {languages} />
+</BaseLayout>

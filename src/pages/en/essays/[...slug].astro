@@ -1,0 +1,15 @@
+---
+import { render } from 'astro:content';
+import { getEssayStaticPaths, type Essay } from '../../../lib/essays';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+export const getStaticPaths = () => getEssayStaticPaths('en');
+
+interface Props { essay: Essay; translations: Essay[] }
+const { essay, translations } = Astro.props;
+const { Content } = await render(essay);
+---
+
+<ArticleLayout {essay} {translations}>
+	<Content />
+</ArticleLayout>

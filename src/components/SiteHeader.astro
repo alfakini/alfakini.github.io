@@ -1,0 +1,75 @@
+---
+import { SITE_TITLE } from '../consts';
+import type { Locale } from '../lib/essays';
+
+interface Props { lang?: Locale; alternates?: Array<{ lang: Locale; href: string }> }
+const { lang = 'pt', alternates = [] } = Astro.props;
+const pathname = Astro.url.pathname;
+const titleCharacters = Array.from(SITE_TITLE);
+const translation = alternates.find((alternate) => alternate.lang !== lang);
+const labels = lang === 'pt'
+	? { skip: 'Pular para o conteúdo', nav: 'Principal', translation: 'Ler em inglês' }
+	: { skip: 'Skip to content', nav: 'Main', translation: 'Read in Portuguese' };
+---
+
+<a class="skip-link" href="#conteudo">{labels.skip}</a>
+<header class="site-header sans">
+	<a class="site-name" href="/" aria-label={SITE_TITLE} data-scramble-title>
+		{titleCharacters.map((character) => (
+			<span class={character === ' ' ? 'site-name-space' : undefined} aria-hidden="true" data-scramble-character data-character={character}>{character}</span>
+		))}
+	</a>
+	<div class="header-nav">
+		<nav aria-label={labels.nav}>
+			<ul>
+				<li><a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Essays</a></li>
+			</ul>
+		</nav>
+		{translation && (
+			<>
+				<span aria-hidden="true">|</span>
+				<a class="language-switch" href={translation.href} hreflang={translation.lang} lang={translation.lang} rel="alternate" aria-label={labels.translation}>
+					{translation.lang}
+				</a>
+			</>
+		)}
+	</div>
+</header>
+
+<script>
+	const title = document.querySelector<HTMLElement>('[data-scramble-title]');
+	const scrambleCharacters = '!@#$%^&*()_+-={}[];:,.<>/?|\\';
+	const flipDelay = 45;
+	const revealDelay = 90;
+
+	if (title && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const characters = Array.from(title.querySelectorAll<HTMLElement>('[data-scramble-character]'));
+		let lastFlip = -flipDelay;
+
+		const scramble = (now: number, startedAt: number) => {
+			const elapsed = now - startedAt;
+			const revealedCount = Math.floor(elapsed / revealDelay);
+			const shouldFlip = elapsed - lastFlip >= flipDelay;
+
+			for (const [index, character] of characters.entries()) {
+				const originalCharacter = character.dataset.character ?? '';
+
+				if (index < revealedCount || originalCharacter === ' ') {
+					character.textContent = originalCharacter;
+					character.classList.remove('is-scrambled');
+				} else if (shouldFlip) {
+					character.textContent = scrambleCharacters[Math.floor(Math.random() * scrambleCharacters.length)];
+					character.classList.add('is-scrambled');
+				}
+			}
+
+			if (revealedCount < characters.length) {
+				if (shouldFlip) lastFlip = elapsed;
+				requestAnimationFrame((nextFrame) => scramble(nextFrame, startedAt));
+			}
+		};
+
+		title.classList.add('is-scrambling');
+		requestAnimationFrame((startedAt) => scramble(startedAt, startedAt));
+	}
+</script>

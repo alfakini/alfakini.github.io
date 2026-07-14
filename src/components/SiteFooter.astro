@@ -1,0 +1,18 @@
+---
+import { SITE_AUTHOR } from '../consts';
+import type { Locale } from '../lib/essays';
+
+interface Props { lang?: Locale }
+const { lang = 'pt' } = Astro.props;
+const labels = lang === 'pt'
+	? { tags: 'Tags', nav: 'Navegação secundária' }
+	: { tags: 'Tags', nav: 'Secondary navigation' };
+---
+
+<footer class="site-footer sans">
+	<p>&copy; {new Date().getFullYear()} {SITE_AUTHOR}.</p>
+	<nav aria-label={labels.nav}>
+		<a href="/tags/">{labels.tags}</a>
+		<a href="/rss.xml">RSS</a>
+	</nav>
+</footer>
