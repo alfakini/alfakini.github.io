@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import type { Essay } from '../lib/essays';
 import { essayIdentity, essayPath, tagSlug } from '../lib/essays';
-import FormattedDate from '../components/FormattedDate.astro';
+import EssayMeta from '../components/EssayMeta.astro';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props { essay: Essay; translations: Essay[] }
@@ -18,10 +18,7 @@ const hasTags = essay.data.tags.length > 0;
 <BaseLayout title={essay.data.title} description={essay.data.description} image={essay.data.heroImage} type="article" lang={lang} pubDate={essay.data.pubDate} updatedDate={essay.data.updatedDate} tags={essay.data.tags} alternates={alternates}>
 	<article class="essay-article">
 		<header class="essay-header">
-			<p class="sans">
-				<FormattedDate date={essay.data.pubDate} lang={lang} />
-				{essay.data.updatedDate && <> · {updatedLabel} <FormattedDate date={essay.data.updatedDate} lang={lang} /></>}
-			</p>
+			<EssayMeta {essay} {translations} {updatedLabel} />
 			<h1>{essay.data.title}</h1>
 		</header>
 		{essay.data.heroImage && <figure class="hero-image">

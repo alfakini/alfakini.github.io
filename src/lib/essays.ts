@@ -48,16 +48,16 @@ export async function getEssays(lang: Locale = defaultLocale): Promise<Essay[]> 
 		.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
 
-export async function getEssayLanguages(): Promise<Map<string, Locale[]>> {
-	const languages = new Map<string, Locale[]>();
+export async function getEssayLanguages(): Promise<Map<string, Essay[]>> {
+	const languages = new Map<string, Essay[]>();
 
 	for (const entry of await loadEssays()) {
-		const { lang, slug } = essayIdentity(entry);
-		languages.set(slug, [...(languages.get(slug) ?? []), lang]);
+		const { slug } = essayIdentity(entry);
+		languages.set(slug, [...(languages.get(slug) ?? []), entry]);
 	}
 
 	for (const available of languages.values()) {
-		available.sort((a, b) => locales.indexOf(a) - locales.indexOf(b));
+		available.sort((a, b) => locales.indexOf(essayIdentity(a).lang) - locales.indexOf(essayIdentity(b).lang));
 	}
 
 	return languages;

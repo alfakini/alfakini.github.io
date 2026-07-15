@@ -266,14 +266,10 @@ main > *,
 }
 
 .eyebrow,
-.post-list-date,
+.essay-meta,
 .essay-header > .sans {
 	font-size: 1rem;
 	line-height: 1.4;
-}
-
-.essay-header > .sans {
-	color: #888;
 }
 
 .eyebrow {
@@ -310,7 +306,7 @@ main > *,
 
 .post-list > li {
 	display: grid;
-	grid-template-columns: 9rem minmax(0, 1fr);
+	grid-template-columns: max-content minmax(0, 1fr);
 	column-gap: 1.5rem;
 	padding: 1.5rem 0;
 	border-bottom: 1px solid currentColor;
@@ -330,15 +326,50 @@ main > *,
 	margin-bottom: 0;
 }
 
-.post-list .post-list-date {
+.essay-meta {
+	display: flex;
+	align-items: center;
+	gap: 0.625rem;
+	white-space: nowrap;
+}
+
+.post-list .essay-meta {
 	grid-row: 1 / span 4;
 	grid-column: 1;
+	align-self: start;
+	justify-content: flex-end;
 	text-align: right;
 }
 
+.post-list-separator {
+	margin-left: -0.25em;
+	font-size: 30px;
+	line-height: 1;
+}
+
 .post-list-languages {
-	display: block;
-	text-align: right;
+	display: flex;
+	gap: 0.3rem;
+}
+
+.post-list-language {
+	display: inline-block;
+	padding: 0.05rem 0.3rem;
+	border: 1px solid currentColor;
+	font-size: 0.8em;
+	line-height: 1.2;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.post-list-language:hover,
+.post-list-language[aria-current="page"] {
+	color: #fff;
+	background: #111;
+}
+
+.post-list-language[aria-current="page"] {
+	cursor: default;
 }
 
 .post-list h2 {
@@ -817,8 +848,14 @@ main > *,
 		display: block;
 	}
 
-	.post-list .post-list-date {
+	.post-list .essay-meta {
 		margin-bottom: 0.75rem;
+		justify-content: flex-start;
+		text-align: left;
+	}
+
+	.post-list-languages {
+		text-align: left;
 	}
 
 	.prose .example {

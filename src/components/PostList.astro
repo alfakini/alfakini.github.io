@@ -1,22 +1,19 @@
 ---
-import type { Essay, Locale } from '../lib/essays';
+import type { Essay } from '../lib/essays';
 import { essayIdentity, essayPath } from '../lib/essays';
-import FormattedDate from './FormattedDate.astro';
+import EssayMeta from './EssayMeta.astro';
 
-interface Props { essays: Essay[]; languages: Map<string, Locale[]> }
+interface Props { essays: Essay[]; languages: Map<string, Essay[]> }
 const { essays, languages } = Astro.props;
 ---
 
 <ol class="post-list">
 	{essays.map((essay) => {
-		const { lang, slug } = essayIdentity(essay);
-		const available = languages.get(slug) ?? [lang];
+		const { slug } = essayIdentity(essay);
+		const available = languages.get(slug) ?? [essay];
 		return (
 			<li>
-				<div class="post-list-date sans">
-					<FormattedDate date={essay.data.pubDate} lang={lang} />
-					<span class="post-list-languages">{available.join(' / ')}</span>
-				</div>
+				<EssayMeta {essay} translations={available} />
 				<h2><a href={essayPath(essay)}>{essay.data.title}</a></h2>
 				<p>{essay.data.description}</p>
 			</li>
