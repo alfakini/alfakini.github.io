@@ -9,7 +9,7 @@ const { lang } = essayIdentity(essay);
 ---
 
 <div class="essay-meta sans">
-	<FormattedDate date={essay.data.pubDate} lang={lang} />
+	<FormattedDate date={essay.data.published_at} lang={lang} />
 	{essay.data.updatedDate && updatedLabel && <> · {updatedLabel} <FormattedDate date={essay.data.updatedDate} lang={lang} /></>}
 	<span class="post-list-separator" aria-hidden="true">·</span>
 	<span class="post-list-languages" aria-label="Available languages">

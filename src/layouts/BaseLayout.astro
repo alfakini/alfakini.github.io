@@ -8,7 +8,7 @@ import '../styles/site.css';
 
 interface Props {
 	title: string; description: string; image?: ImageMetadata; type?: 'website' | 'article'; lang?: Locale;
-	pubDate?: Date; updatedDate?: Date; tags?: string[]; alternates?: Array<{ lang: Locale; href: string }>;
+	published_at?: Date; updatedDate?: Date; tags?: string[]; alternates?: Array<{ lang: Locale; href: string }>;
 }
 const { lang = 'pt', alternates = [], ...head } = Astro.props;
 ---

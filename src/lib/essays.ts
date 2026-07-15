@@ -37,7 +37,9 @@ export function openGraphLocale(locale: Locale): 'pt_BR' | 'en_US' {
 }
 
 async function loadEssays(): Promise<Essay[]> {
-	const entries = (await getCollection('essays')).filter((entry) => !import.meta.env.PROD || !entry.data.draft);
+	const entries = (await getCollection('essays')).filter(
+		(entry) => !import.meta.env.PROD || entry.data.status === 'published',
+	);
 	assertUniqueEssayVariants(entries);
 	return entries;
 }
@@ -45,7 +47,7 @@ async function loadEssays(): Promise<Essay[]> {
 export async function getEssays(lang: Locale = defaultLocale): Promise<Essay[]> {
 	return (await loadEssays())
 		.filter((entry) => essayIdentity(entry).lang === lang)
-		.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+		.toSorted((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
 }
 
 export async function getEssayLanguages(): Promise<Map<string, Essay[]>> {

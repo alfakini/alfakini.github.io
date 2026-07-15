@@ -1,9 +1,9 @@
 ---
 title: 'A racionalidade exige tempo'
 description: O ensaio argumenta que a racionalidade e a democracia exigem tempo para reflexão e debate, mas plataformas digitais e IA incentivam reações imediatas, desinformação e polarização. Soluções técnicas não substituem confiança, legitimidade e negociação coletiva. A solução é humana.'
-pubDate: 'Jun 13 2026'
+published_at: 'Jun 13 2026'
 tags: ['filosofia']
-draft: false
+status: published
 ---
 
 A racionalidade exige tempo. Decisões racionais não surgem como respostas instantâneas a estímulos. Elas levam tempo e são construídas pela reflexão, relacionando o presente às nossas experiências do passado e às possíveis consequências futuras. Pensar racionalmente é criar distância entre aquilo que nos afeta e a resposta que produzimos. Nesse intervalo, podemos comparar hipóteses e reconsiderar conclusões.

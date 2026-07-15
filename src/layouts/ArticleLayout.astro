@@ -15,7 +15,7 @@ const noteLabel = lang === 'pt' ? 'Ver nota' : 'See note';
 const hasTags = essay.data.tags.length > 0;
 ---
 
-<BaseLayout title={essay.data.title} description={essay.data.description} image={essay.data.heroImage} type="article" lang={lang} pubDate={essay.data.pubDate} updatedDate={essay.data.updatedDate} tags={essay.data.tags} alternates={alternates}>
+<BaseLayout title={essay.data.title} description={essay.data.description} image={essay.data.heroImage} type="article" lang={lang} published_at={essay.data.published_at} updatedDate={essay.data.updatedDate} tags={essay.data.tags} alternates={alternates}>
 	<article class="essay-article">
 		<header class="essay-header">
 			<EssayMeta {essay} {translations} {updatedLabel} />

@@ -69,10 +69,10 @@ Do not create both `my-post.md` and `my-post/pt.md`; they resolve to the same ro
 ---
 title: 'Required title'
 description: 'Required summary used by lists and metadata.'
-pubDate: '2026-07-12'
+published_at: '2026-07-12'
 updatedDate: '2026-07-20' # optional
 tags: ['Astro', 'web'] # optional, defaults to []
-draft: false # optional, defaults to false
+status: published # optional, defaults to draft
 heroImage: '../../../src/assets/example.jpg' # optional
 lang: pt # optional for flat files; grouped filenames determine language
 ---
@@ -80,7 +80,7 @@ lang: pt # optional for flat files; grouped filenames determine language
 
 Production builds exclude drafts from routes, lists, tags, RSS, sitemap data, language links, and metadata. Development includes drafts for previewing.
 
-Use `pubDate`, not `publishedDate`, to preserve the repository's established frontmatter format.
+Use `published_at` for the publication date. `status` accepts `draft` or `published`.
 
 ## Images and figures
 
