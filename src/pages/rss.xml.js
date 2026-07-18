@@ -3,17 +3,17 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { essayPath, getEssays } from '../lib/essays';
 
 export async function GET(context) {
-	const posts = await getEssays();
+	const essays = await getEssays();
 	return rss({
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
 		site: context.site,
-		items: posts.map((post) => ({
-			title: post.data.title,
-			description: post.data.description,
-			pubDate: post.data.published_at,
-			categories: post.data.tags,
-			link: essayPath(post),
+		items: essays.map((essay) => ({
+			title: essay.data.title,
+			description: essay.data.description,
+			pubDate: essay.data.published_at,
+			categories: essay.data.tags,
+			link: essayPath(essay),
 		})),
 	});
 }

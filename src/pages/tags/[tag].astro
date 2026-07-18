@@ -1,5 +1,5 @@
 ---
-import PostList from '../../components/PostList.astro';
+import EssayList from '../../components/EssayList.astro';
 import { SITE_TITLE } from '../../consts';
 import { allTags, getEssayLanguages, getEssays, tagSlug, type Essay, type EssayTag } from '../../lib/essays';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -21,5 +21,5 @@ const languages = await getEssayLanguages();
 	<header class="page-header">
 		<h1>Tag: {tag.name}</h1>
 	</header>
-	<PostList {essays} {languages} />
+	<EssayList {essays} {languages} />
 </BaseLayout>

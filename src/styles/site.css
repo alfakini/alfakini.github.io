@@ -259,7 +259,7 @@ main > *,
 .home-intro h1,
 .home-intro .subtitle,
 .page-header h1,
-.post-list,
+.essay-list,
 .tag-index {
 	width: 55%;
 	margin-top: 0;
@@ -295,7 +295,7 @@ main > *,
 	margin: 0;
 }
 
-.post-list,
+.essay-list,
 .tag-index {
 	margin-block: 0;
 	padding: 0;
@@ -304,7 +304,7 @@ main > *,
 	list-style: none;
 }
 
-.post-list > li {
+.essay-list > li {
 	display: grid;
 	grid-template-columns: max-content minmax(0, 1fr);
 	column-gap: 1.5rem;
@@ -312,17 +312,17 @@ main > *,
 	border-bottom: 1px solid currentColor;
 }
 
-.post-list > li:first-child {
+.essay-list > li:first-child {
 	padding-top: 0;
 }
 
-.post-list > li > * {
+.essay-list > li > * {
 	grid-column: 2;
 	margin-top: 0;
 	margin-bottom: 0.6rem;
 }
 
-.post-list > li > :last-child {
+.essay-list > li > :last-child {
 	margin-bottom: 0;
 }
 
@@ -333,7 +333,7 @@ main > *,
 	white-space: nowrap;
 }
 
-.post-list .essay-meta {
+.essay-list .essay-meta {
 	grid-row: 1 / span 4;
 	grid-column: 1;
 	align-self: start;
@@ -341,18 +341,18 @@ main > *,
 	text-align: right;
 }
 
-.post-list-separator {
+.essay-list-separator {
 	margin-left: -0.25em;
 	font-size: 30px;
 	line-height: 1;
 }
 
-.post-list-languages {
+.essay-list-languages {
 	display: flex;
 	gap: 0.3rem;
 }
 
-.post-list-language {
+.essay-list-language {
 	display: inline-block;
 	padding: 0.05rem 0.3rem;
 	border: 1px solid currentColor;
@@ -362,27 +362,27 @@ main > *,
 	text-transform: uppercase;
 }
 
-.post-list-language:hover,
-.post-list-language[aria-current="page"] {
+.essay-list-language:hover,
+.essay-list-language[aria-current="page"] {
 	color: #fff;
 	background: #111;
 }
 
-.post-list-language[aria-current="page"] {
+.essay-list-language[aria-current="page"] {
 	cursor: default;
 }
 
-.post-list h2 {
+.essay-list h2 {
 	font-size: 1.8rem;
 }
 
-.post-list h2 a,
+.essay-list h2 a,
 .tag-index a {
 	text-decoration: none;
 }
 
-.post-list p,
-.post-list ul {
+.essay-list p,
+.essay-list ul {
 	width: auto;
 	font-size: 1.15rem;
 	line-height: 1.55;
@@ -790,7 +790,7 @@ main > *,
 	.site-header,
 	.site-footer,
 	.section-heading,
-	.post-list,
+	.essay-list,
 	.tag-index,
 	.home-intro h1,
 	.home-intro .subtitle,
@@ -838,17 +838,17 @@ main > *,
 		flex-wrap: wrap;
 	}
 
-	.post-list > li {
+	.essay-list > li {
 		display: block;
 	}
 
-	.post-list .essay-meta {
+	.essay-list .essay-meta {
 		margin-bottom: 0.75rem;
 		justify-content: flex-start;
 		text-align: left;
 	}
 
-	.post-list-languages {
+	.essay-list-languages {
 		text-align: left;
 	}
 

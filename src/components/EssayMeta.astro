@@ -11,12 +11,12 @@ const { lang } = essayIdentity(essay);
 <div class="essay-meta sans">
 	<FormattedDate date={essay.data.published_at} lang={lang} />
 	{essay.data.updatedDate && updatedLabel && <> · {updatedLabel} <FormattedDate date={essay.data.updatedDate} lang={lang} /></>}
-	<span class="post-list-separator" aria-hidden="true">·</span>
-	<span class="post-list-languages" aria-label="Available languages">
+	<span class="essay-list-separator" aria-hidden="true">·</span>
+	<span class="essay-list-languages" aria-label="Available languages">
 		{translations.map((translation) => {
 			const { lang: translationLang } = essayIdentity(translation);
 			const label = translationLang === 'pt' ? 'Ler em português' : 'Read in English';
-			return <a class="post-list-language" href={essayPath(translation)} hreflang={translationLang} lang={translationLang} aria-label={label} aria-current={translationLang === lang ? 'page' : undefined}>{translationLang}</a>;
+			return <a class="essay-list-language" href={essayPath(translation)} hreflang={translationLang} lang={translationLang} aria-label={label} aria-current={translationLang === lang ? 'page' : undefined}>{translationLang}</a>;
 		})}
 	</span>
 </div>

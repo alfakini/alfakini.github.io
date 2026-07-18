@@ -7,7 +7,7 @@ interface Props { essays: Essay[]; languages: Map<string, Essay[]> }
 const { essays, languages } = Astro.props;
 ---
 
-<ol class="post-list">
+<ol class="essay-list">
 	{essays.map((essay) => {
 		const { slug } = essayIdentity(essay);
 		const available = languages.get(slug) ?? [essay];
