@@ -1,3 +1,5 @@
+import { contentLocale } from './locale.ts';
+
 function isElement(node, tagName) {
 	return node?.type === 'element' && (!tagName || node.tagName === tagName);
 }
@@ -20,13 +22,13 @@ function removeAttributionPrefix(node) {
 	return false;
 }
 
-function marginNoteNodes(note, index) {
+function marginNoteNodes(note, index, label) {
 	const id = `margin-note-${index}`;
 	return [
 		{
 			type: 'element',
 			tagName: 'label',
-			properties: { htmlFor: id, className: ['margin-toggle'], ariaLabel: 'Toggle margin note' },
+			properties: { htmlFor: id, className: ['margin-toggle'], ariaLabel: label },
 			children: [{ type: 'text', value: '⊕' }],
 		},
 		{
@@ -50,7 +52,7 @@ function transformChildren(parent, state) {
 
 		if (isElement(child, 'aside')) {
 			state.marginNotes += 1;
-			const replacements = marginNoteNodes(child, state.marginNotes);
+			const replacements = marginNoteNodes(child, state.marginNotes, state.marginNoteLabel);
 			parent.children.splice(index, 1, ...replacements);
 			index += replacements.length - 1;
 			continue;
@@ -92,5 +94,11 @@ function transformChildren(parent, state) {
 }
 
 export default function rehypeSemanticMarkdown() {
-	return (tree) => transformChildren(tree, { marginNotes: 0 });
+	return (tree, file) => {
+		const marginNoteLabel =
+			contentLocale(file.data.astro?.frontmatter?.lang, file.path) === 'pt'
+				? 'Alternar nota lateral'
+				: 'Toggle margin note';
+		transformChildren(tree, { marginNotes: 0, marginNoteLabel });
+	};
 }

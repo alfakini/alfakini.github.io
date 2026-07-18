@@ -1,3 +1,5 @@
+import { contentLocale } from './locale.ts';
+
 function isElement(node, tagName) {
 	return node?.type === 'element' && (!tagName || node.tagName === tagName);
 }
@@ -31,20 +33,20 @@ function noteChildren(item) {
 	return children;
 }
 
-function backreference(id) {
+function backreference(id, labels) {
 	return {
 		type: 'element',
 		tagName: 'a',
 		properties: {
 			href: `#${id}`,
 			className: ['footnote-backlink'],
-			ariaLabel: 'Back to reference',
+			ariaLabel: labels.backreference,
 		},
 		children: [{ type: 'text', value: '↩' }],
 	};
 }
 
-function placeSidenotes(node, notes, placed) {
+function placeSidenotes(node, notes, placed, labels) {
 	if (!node?.children) return;
 
 	for (let index = 0; index < node.children.length; index += 1) {
@@ -61,7 +63,7 @@ function placeSidenotes(node, notes, placed) {
 				typeof reference.properties?.id === 'string' ? reference.properties.id : `footnote-reference-${number}`;
 			const noteId = placed.includes(href) ? `${href.slice(1)}-${number}` : href.slice(1);
 			const note = structuredClone(notes.get(href));
-			const noteWithBacklink = [...note, { type: 'text', value: ' ' }, backreference(referenceId)];
+			const noteWithBacklink = [...note, { type: 'text', value: ' ' }, backreference(referenceId, labels)];
 			node.children.splice(
 				index,
 				1,
@@ -72,7 +74,7 @@ function placeSidenotes(node, notes, placed) {
 						id: referenceId,
 						htmlFor: controlId,
 						className: ['margin-toggle', 'sidenote-number'],
-						ariaLabel: `Toggle note ${number}`,
+						ariaLabel: `${labels.toggle} ${number}`,
 					},
 					children: [],
 				},
@@ -94,12 +96,16 @@ function placeSidenotes(node, notes, placed) {
 			continue;
 		}
 
-		placeSidenotes(child, notes, placed);
+		placeSidenotes(child, notes, placed, labels);
 	}
 }
 
 export default function rehypeFootnoteAsides() {
-	return (tree) => {
+	return (tree, file) => {
+		const labels =
+			contentLocale(file.data.astro?.frontmatter?.lang, file.path) === 'pt'
+				? { backreference: 'Voltar à referência', toggle: 'Alternar nota' }
+				: { backreference: 'Back to reference', toggle: 'Toggle note' };
 		const sectionIndex = tree.children.findIndex((node) => isElement(node, 'section') && hasClass(node, 'footnotes'));
 		if (sectionIndex < 0) return;
 
@@ -116,7 +122,7 @@ export default function rehypeFootnoteAsides() {
 
 		const placed = [];
 		const content = tree.children.slice(0, sectionIndex);
-		for (const block of content) placeSidenotes(block, notes, placed);
+		for (const block of content) placeSidenotes(block, notes, placed, labels);
 		tree.children = [...content, ...tree.children.slice(sectionIndex + 1)];
 	};
 }

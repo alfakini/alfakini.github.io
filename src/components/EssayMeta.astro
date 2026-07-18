@@ -6,13 +6,14 @@ import FormattedDate from './FormattedDate.astro';
 interface Props { essay: Essay; translations: Essay[]; updatedLabel?: string }
 const { essay, translations, updatedLabel } = Astro.props;
 const { lang } = essayIdentity(essay);
+const languagesLabel = lang === 'pt' ? 'Idiomas disponíveis' : 'Available languages';
 ---
 
 <div class="essay-meta sans">
 	<FormattedDate date={essay.data.published_at} lang={lang} />
 	{essay.data.updated_at && updatedLabel && <> · {updatedLabel} <FormattedDate date={essay.data.updated_at} lang={lang} /></>}
 	<span class="essay-list-separator" aria-hidden="true">·</span>
-	<span class="essay-list-languages" aria-label="Available languages">
+	<span class="essay-list-languages" aria-label={languagesLabel}>
 		{translations.map((translation) => {
 			const { lang: translationLang } = essayIdentity(translation);
 			const label = translationLang === 'pt' ? 'Ler em português' : 'Read in English';

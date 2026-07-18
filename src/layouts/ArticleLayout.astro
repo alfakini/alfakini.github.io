@@ -13,6 +13,7 @@ const alternates = translations.map((translation) => ({ lang: essayIdentity(tran
 const updatedLabel = lang === 'pt' ? 'Atualizado em' : 'Updated';
 const notesLabel = lang === 'pt' ? 'Notas' : 'Notes';
 const noteLabel = lang === 'pt' ? 'Ver nota' : 'See note';
+const tagsLabel = lang === 'pt' ? 'Assuntos' : 'Tags';
 const hasTags = essay.data.tags.length > 0;
 const pageTitle = `${essay.data.title} | ${SITE_TITLE}`;
 ---
@@ -34,7 +35,7 @@ const pageTitle = `${essay.data.title} | ${SITE_TITLE}`;
 				<h2>{notesLabel}</h2>
 				<ol></ol>
 			</div>
-			{hasTags && <ul class="tag-list" aria-label="Tags">
+			{hasTags && <ul class="tag-list" aria-label={tagsLabel}>
 				{essay.data.tags.map((tag) => <li><a href={`/tags/${tagSlug(tag)}/`}>#{tag}</a></li>)}
 			</ul>}
 		</footer>
