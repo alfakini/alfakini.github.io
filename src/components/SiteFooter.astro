@@ -2,11 +2,12 @@
 import { SITE_AUTHOR } from '../consts';
 import { defaultLocale, type Locale } from '../lib/locale';
 
-interface Props { lang?: Locale }
+interface Props {
+	lang?: Locale;
+}
 const { lang = defaultLocale } = Astro.props;
-const labels = lang === 'pt'
-	? { tags: 'Tags', nav: 'Navegação secundária' }
-	: { tags: 'Tags', nav: 'Secondary navigation' };
+const labels =
+	lang === 'pt' ? { tags: 'Tags', nav: 'Navegação secundária' } : { tags: 'Tags', nav: 'Secondary navigation' };
 ---
 
 <footer class="site-footer sans">

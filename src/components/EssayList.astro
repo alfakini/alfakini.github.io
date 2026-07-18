@@ -3,7 +3,10 @@ import type { Essay } from '../lib/essays';
 import { essayIdentity, essayPath } from '../lib/essays';
 import EssayMeta from './EssayMeta.astro';
 
-interface Props { essays: Essay[]; languages: Map<string, Essay[]> }
+interface Props {
+	essays: Essay[];
+	languages: Map<string, Essay[]>;
+}
 const { essays, languages } = Astro.props;
 ---
 

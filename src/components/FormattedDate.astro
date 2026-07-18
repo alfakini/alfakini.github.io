@@ -1,7 +1,10 @@
 ---
 import { defaultLocale, localeCode, type Locale } from '../lib/locale';
 
-interface Props { date: Date; lang?: Locale }
+interface Props {
+	date: Date;
+	lang?: Locale;
+}
 const { date, lang = defaultLocale } = Astro.props;
 ---
 

@@ -2,14 +2,16 @@
 import { SITE_TITLE } from '../consts';
 import { defaultLocale, type Locale } from '../lib/locale';
 
-interface Props { lang?: Locale; alternates?: Array<{ lang: Locale; href: string }> }
+interface Props {
+	lang?: Locale;
+	alternates?: Array<{ lang: Locale; href: string }>;
+}
 const { lang = defaultLocale, alternates = [] } = Astro.props;
 const pathname = Astro.url.pathname;
 const titleCharacters = Array.from(SITE_TITLE);
 const translation = alternates.find((alternate) => alternate.lang !== lang);
-const labels = lang === 'pt'
-	? { skip: 'Pular para o conteúdo', nav: 'Principal' }
-	: { skip: 'Skip to content', nav: 'Main' };
+const labels =
+	lang === 'pt' ? { skip: 'Pular para o conteúdo', nav: 'Principal' } : { skip: 'Skip to content', nav: 'Main' };
 const translationLabel = translation?.lang === 'pt' ? 'Ler em português' : 'Read in English';
 ---
 

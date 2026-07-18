@@ -6,10 +6,16 @@ import { essayIdentity, essayPath, tagSlug } from '../lib/essays';
 import EssayMeta from '../components/EssayMeta.astro';
 import BaseLayout from './BaseLayout.astro';
 
-interface Props { essay: Essay; translations: Essay[] }
+interface Props {
+	essay: Essay;
+	translations: Essay[];
+}
 const { essay, translations } = Astro.props;
 const { lang } = essayIdentity(essay);
-const alternates = translations.map((translation) => ({ lang: essayIdentity(translation).lang, href: essayPath(translation) }));
+const alternates = translations.map((translation) => ({
+	lang: essayIdentity(translation).lang,
+	href: essayPath(translation),
+}));
 const updatedLabel = lang === 'pt' ? 'Atualizado em' : 'Updated';
 const notesLabel = lang === 'pt' ? 'Notas' : 'Notes';
 const noteLabel = lang === 'pt' ? 'Ver nota' : 'See note';

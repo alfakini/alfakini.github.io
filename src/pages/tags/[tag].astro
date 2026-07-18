@@ -12,7 +12,10 @@ export async function getStaticPaths() {
 	}));
 }
 
-interface Props { tag: EssayTag; essays: Essay[] }
+interface Props {
+	tag: EssayTag;
+	essays: Essay[];
+}
 const { tag, essays } = Astro.props;
 const languages = await getEssayLanguages();
 ---

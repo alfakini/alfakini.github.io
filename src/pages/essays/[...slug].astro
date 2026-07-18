@@ -5,7 +5,10 @@ import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
 export const getStaticPaths = () => getEssayStaticPaths('pt');
 
-interface Props { essay: Essay; translations: Essay[] }
+interface Props {
+	essay: Essay;
+	translations: Essay[];
+}
 const { essay, translations } = Astro.props;
 const { Content } = await render(essay);
 ---

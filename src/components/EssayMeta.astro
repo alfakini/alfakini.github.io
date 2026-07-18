@@ -3,7 +3,11 @@ import type { Essay } from '../lib/essays';
 import { essayIdentity, essayPath } from '../lib/essays';
 import FormattedDate from './FormattedDate.astro';
 
-interface Props { essay: Essay; translations: Essay[]; updatedLabel?: string }
+interface Props {
+	essay: Essay;
+	translations: Essay[];
+	updatedLabel?: string;
+}
 const { essay, translations, updatedLabel } = Astro.props;
 const { lang } = essayIdentity(essay);
 const languagesLabel = lang === 'pt' ? 'Idiomas disponíveis' : 'Available languages';
