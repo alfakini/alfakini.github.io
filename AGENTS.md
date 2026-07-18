@@ -32,4 +32,4 @@ Consult these guides before working on related tasks:
 - Use the helpers in `src/lib/essays.ts` for publication filtering, paths, sorting, translations, and tags. Production drafts must never reach routes, lists, RSS, or metadata.
 - Keep article typography scoped under `.prose`; listing and navigation typography must remain independent.
 - Keep fonts, CSS, and scripts local. Preserve the notices in `src/assets/fonts` when changing vendored assets.
-- Avoid client directives and runtime JavaScript. Footnotes and syntax highlighting are build-time transformations.
+- Avoid client directives. Use local runtime JavaScript only when it is needed for front-end behavior. Footnote markup and syntax highlighting are build-time transformations.

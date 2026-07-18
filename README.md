@@ -1,6 +1,6 @@
 # alanfachini.com
 
-Personal essays built with Astro, Bun, Markdown, and MDX. The site is statically generated, uses no client-side JavaScript, and ships without a site-wide stylesheet or bundled fonts.
+Personal essays built with Astro, Bun, Markdown, and MDX. The site is statically generated, with local client-side scripts only where needed for front-end behavior, and ships without a site-wide stylesheet or bundled fonts.
 
 ## Installation
 
