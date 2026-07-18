@@ -11,7 +11,7 @@ const languagesLabel = lang === 'pt' ? 'Idiomas disponíveis' : 'Available langu
 
 <div class="essay-meta sans">
 	<FormattedDate date={essay.data.published_at} lang={lang} />
-	{essay.data.updated_at && updatedLabel && <> · {updatedLabel} <FormattedDate date={essay.data.updated_at} lang={lang} /></>}
+	{essay.data.updated_at && updatedLabel && <><span aria-hidden="true">·</span> {updatedLabel} <FormattedDate date={essay.data.updated_at} lang={lang} /></>}
 	<span class="essay-list-separator" aria-hidden="true">·</span>
 	<span class="essay-list-languages" aria-label={languagesLabel}>
 		{translations.map((translation) => {
