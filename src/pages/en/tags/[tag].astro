@@ -1,9 +1,9 @@
 ---
-import TagPage from '../../components/pages/TagPage.astro';
-import { allTags, getEssays, tagSlug, type Essay, type EssayTag } from '../../lib/essays';
+import TagPage from '../../../components/pages/TagPage.astro';
+import { allTags, getEssays, tagSlug, type Essay, type EssayTag } from '../../../lib/essays';
 
 export async function getStaticPaths() {
-	const essays = await getEssays('pt-BR');
+	const essays = await getEssays('en');
 	return allTags(essays).map((tag) => ({
 		params: { tag: tag.slug },
 		props: { tag, essays: essays.filter((essay) => essay.data.tags.some((name) => tagSlug(name) === tag.slug)) },
@@ -14,6 +14,7 @@ interface Props {
 	tag: EssayTag;
 	essays: Essay[];
 }
+
 const { tag, essays } = Astro.props;
 ---
 

@@ -1,41 +1,32 @@
 ---
 import { SITE_TITLE } from '../consts';
-import { defaultLocale, type Locale } from '../lib/locale';
+import { currentLocale, defaultLocale, type Locale, useT } from '../i18n';
+import { routeUrl, switchLocaleUrl } from '../i18n/routes';
 
-interface Props {
-	lang?: Locale;
-	alternates?: Array<{ lang: Locale; href: string }>;
-}
-const { lang = defaultLocale, alternates = [] } = Astro.props;
+const lang = currentLocale(Astro.currentLocale);
 const pathname = Astro.url.pathname;
 const titleCharacters = Array.from(SITE_TITLE);
-const translation = alternates.find((alternate) => alternate.lang !== lang);
-const labels =
-	lang === 'pt' ? { skip: 'Pular para o conteúdo', nav: 'Principal' } : { skip: 'Skip to content', nav: 'Main' };
-const translationLabel = translation?.lang === 'pt' ? 'Ler em português' : 'Read in English';
+const translation: Locale = lang === defaultLocale ? 'en' : defaultLocale;
+const t = useT(lang);
+const translationLabel = translation === 'pt-BR' ? t('common.readInPortuguese') : t('common.readInEnglish');
 ---
 
-<a class="skip-link" href="#conteudo">{labels.skip}</a>
+<a class="skip-link" href="#conteudo">{t('header.skipToContent')}</a>
 <header class="site-header sans">
-	<a class="site-name" href="/" aria-label={SITE_TITLE} data-scramble-title>
+	<a class="site-name" href={routeUrl(lang, 'home')} aria-label={SITE_TITLE} data-scramble-title>
 		{titleCharacters.map((character) => (
 			<span class={character === ' ' ? 'site-name-space' : undefined} aria-hidden="true" data-scramble-character data-character={character}>{character}</span>
 		))}
 	</a>
 	<div class="header-nav">
-		<nav aria-label={labels.nav}>
+		<nav aria-label={t('header.navigation')}>
 			<ul>
-				<li><a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Essays</a></li>
+				<li><a href={routeUrl(lang, 'home')} aria-current={pathname === routeUrl(lang, 'home') ? 'page' : undefined}>Essays</a></li>
 			</ul>
 		</nav>
-		{translation && (
-			<>
-				<span aria-hidden="true">|</span>
-				<a class="language-switch" href={translation.href} hreflang={translation.lang} lang={translation.lang} rel="alternate" aria-label={translationLabel}>
-					{translation.lang}
-				</a>
-			</>
-		)}
+		<a class="language-switch" href={switchLocaleUrl(translation, pathname)} hreflang={translation} lang={translation} rel="alternate" aria-label={translationLabel}>
+			{translation === 'pt-BR' ? 'PT' : 'EN'}
+		</a>
 	</div>
 </header>
 

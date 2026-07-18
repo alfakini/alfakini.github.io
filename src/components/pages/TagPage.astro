@@ -1,0 +1,23 @@
+---
+import EssayList from '../EssayList.astro';
+import { SITE_TITLE } from '../../consts';
+import { currentLocale, useT } from '../../i18n';
+import { type Essay, type EssayTag } from '../../lib/essays';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+interface Props {
+	tag: EssayTag;
+	essays: Essay[];
+}
+
+const { tag, essays } = Astro.props;
+const lang = currentLocale(Astro.currentLocale);
+const t = useT(lang);
+---
+
+<BaseLayout title={`${tag.name} | ${SITE_TITLE}`} description={`${t('tags.title')}: ${tag.name}.`}>
+	<header class="page-header">
+		<h1>{t('tags.title')}: {tag.name}</h1>
+	</header>
+	<EssayList {essays} />
+</BaseLayout>

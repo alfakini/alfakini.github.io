@@ -40,11 +40,27 @@ bun run build
 
 Biome formats and checks the project files. `astro check` validates Astro and content code.
 
+## Languages and routes
+
+The site uses Astro's built-in i18n routing with Brazilian Portuguese (`pt-BR`) as the default language. Portuguese routes have no locale prefix; English routes use `/en`. Route slugs are shared between languages:
+
+```text
+/                         Portuguese home
+/essays/my-post/          Portuguese essay
+/tags/                    Portuguese tags
+/en/                      English home
+/en/essays/my-post/       English essay
+/en/tags/                 English tags
+/rss.xml                  Global feed, preferring English essays
+```
+
+The language switcher preserves the current route and nested path. Translated UI strings live in `src/i18n/translations`; the English dictionary is typed against the Portuguese source dictionary, so missing translation keys fail type checking. Use `src/i18n/routes.ts` for internal links instead of constructing locale-prefixed URLs manually.
+
 ## Create a post
 
 Posts live under `content/essays` and are loaded through Astro's Content Layer API.
 
-A Portuguese-only post can be a flat file:
+A Portuguese-only post can be a flat file. Its frontmatter must include `locale: pt-BR` and a route `slug`:
 
 ```text
 content/essays/my-post.md
@@ -52,16 +68,18 @@ content/essays/my-post.md
 
 It is published at `/essays/my-post/`.
 
-For translations, group language files under a shared directory:
+For translations, group language files under a shared directory. Use the same `slug` in both files:
 
 ```text
-content/essays/my-post/pt.md
+content/essays/my-post/pt-BR.md
 content/essays/my-post/en.md
 ```
 
-The Portuguese version is published at `/essays/my-post/`; English is published at `/en/essays/my-post/`. Available translations automatically appear in the post language switcher and metadata. Files can use either `.md` or `.mdx`.
+The Portuguese version is published at `/essays/my-post/`; English is published at `/en/essays/my-post/`. English essays must use a grouped `en.md` or `en.mdx` file. Both route trees always expose the slug: when a translation is missing, the available content is used as a fallback. The global header switch preserves the current route. Files can use either `.md` or `.mdx`.
 
-Do not create both `my-post.md` and `my-post/pt.md`; they resolve to the same route and the build will reject the collision.
+Tags are stable, untranslated strings and therefore must use the same values in both variants. For example, use `filosofia` in both files rather than creating a translated tag slug.
+
+Do not create both `my-post.md` and `my-post/pt-BR.md`; they resolve to the same route and the build will reject the collision. The build also rejects duplicate locale variants and mismatched translation tag sets.
 
 ## Frontmatter reference
 
@@ -74,11 +92,12 @@ updated_at: '2026-07-20' # optional
 tags: ['Astro', 'web'] # optional, defaults to []
 status: published # optional, defaults to draft
 hero_image: '../../../src/assets/example.jpg' # optional
-lang: pt # optional for flat files; grouped filenames determine language
+locale: pt-BR # required: pt-BR or en
+slug: my-post # required and shared by translations
 ---
 ```
 
-Production builds exclude drafts from routes, lists, tags, RSS, sitemap data, language links, and metadata. Development includes drafts for previewing.
+Production builds exclude drafts from routes, lists, tags, RSS, sitemap data, language links, and metadata. The single global RSS feed uses English content when a published English translation exists and otherwise uses Portuguese. Development includes drafts for previewing, but drafts are never emitted to the feed.
 
 Use `published_at` for the publication date. `status` accepts `draft` or `published`.
 

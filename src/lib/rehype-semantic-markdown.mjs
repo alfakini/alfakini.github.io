@@ -1,4 +1,4 @@
-import { contentLocale } from './locale.ts';
+import { contentLocale } from '../i18n/index.ts';
 
 function isElement(node, tagName) {
 	return node?.type === 'element' && (!tagName || node.tagName === tagName);
@@ -96,7 +96,7 @@ function transformChildren(parent, state) {
 export default function rehypeSemanticMarkdown() {
 	return (tree, file) => {
 		const marginNoteLabel =
-			contentLocale(file.data.astro?.frontmatter?.lang, file.path) === 'pt'
+			contentLocale(file.data.astro?.frontmatter?.lang, file.path) === 'pt-BR'
 				? 'Alternar nota lateral'
 				: 'Toggle margin note';
 		transformChildren(tree, { marginNotes: 0, marginNoteLabel });

@@ -1,19 +1,16 @@
 ---
 import { SITE_AUTHOR } from '../consts';
-import { defaultLocale, type Locale } from '../lib/locale';
+import { currentLocale, useT } from '../i18n';
+import { routeUrl } from '../i18n/routes';
 
-interface Props {
-	lang?: Locale;
-}
-const { lang = defaultLocale } = Astro.props;
-const labels =
-	lang === 'pt' ? { tags: 'Tags', nav: 'Navegação secundária' } : { tags: 'Tags', nav: 'Secondary navigation' };
+const lang = currentLocale(Astro.currentLocale);
+const t = useT(lang);
 ---
 
 <footer class="site-footer sans">
 	<p>&copy; {new Date().getFullYear()} {SITE_AUTHOR}.</p>
-	<nav aria-label={labels.nav}>
-		<a href="/tags/">{labels.tags}</a>
+	<nav aria-label={t('footer.navigation')}>
+		<a href={routeUrl(lang, 'tags')}>{t('footer.tags')}</a>
 		<a href="/rss.xml">RSS</a>
 	</nav>
 </footer>

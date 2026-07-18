@@ -1,23 +1,22 @@
 ---
 import type { Essay } from '../lib/essays';
-import { essayIdentity, essayPath } from '../lib/essays';
+import { currentLocale } from '../i18n';
+import { routeUrl } from '../i18n/routes';
 import EssayMeta from './EssayMeta.astro';
 
 interface Props {
 	essays: Essay[];
-	languages: Map<string, Essay[]>;
 }
-const { essays, languages } = Astro.props;
+const { essays } = Astro.props;
+const lang = currentLocale(Astro.currentLocale);
 ---
 
 <ol class="essay-list">
 	{essays.map((essay) => {
-		const { slug } = essayIdentity(essay);
-		const available = languages.get(slug) ?? [essay];
 		return (
 			<li>
-				<EssayMeta {essay} translations={available} />
-				<h2><a href={essayPath(essay)}>{essay.data.title}</a></h2>
+				<EssayMeta {essay} />
+				<h2><a href={routeUrl(lang, 'essays', essay.data.slug)}>{essay.data.title}</a></h2>
 				<p>{essay.data.description}</p>
 			</li>
 		);

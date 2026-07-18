@@ -9,7 +9,25 @@ import rehypeSemanticMarkdown from './src/lib/rehype-semantic-markdown.mjs';
 
 export default defineConfig({
 	site: 'https://alanfachini.com',
-	integrations: [mdx(), sitemap()],
+	i18n: {
+		locales: ['pt-BR', 'en'],
+		defaultLocale: 'pt-BR',
+		routing: {
+			prefixDefaultLocale: false,
+		},
+	},
+	integrations: [
+		mdx(),
+		sitemap({
+			i18n: {
+				defaultLocale: 'pt-BR',
+				locales: {
+					'pt-BR': 'pt-BR',
+					en: 'en',
+				},
+			},
+		}),
+	],
 	markdown: {
 		processor: unified({
 			remarkPlugins: [remarkMath],

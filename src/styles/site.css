@@ -330,18 +330,7 @@ main > *,
 	text-align: right;
 }
 
-.essay-list-separator {
-	margin-left: -0.25em;
-	font-size: 2rem;
-	line-height: 1;
-}
-
-.essay-list-languages {
-	display: flex;
-	gap: 0.3rem;
-}
-
-.essay-list-language {
+.language-switch {
 	display: inline-block;
 	padding: 0.05rem 0.3rem;
 	border: 1px solid currentColor;
@@ -351,14 +340,9 @@ main > *,
 	text-transform: uppercase;
 }
 
-.essay-list-language:hover,
-.essay-list-language[aria-current="page"] {
+.language-switch:hover {
 	color: var(--color-paper);
 	background: var(--color-ink);
-}
-
-.essay-list-language[aria-current="page"] {
-	cursor: default;
 }
 
 .essay-list h2 {

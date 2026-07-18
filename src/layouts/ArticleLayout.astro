@@ -1,33 +1,27 @@
 ---
 import { Image } from 'astro:assets';
 import { SITE_TITLE } from '../consts';
+import { currentLocale, useT } from '../i18n';
+import { routeUrl } from '../i18n/routes';
 import type { Essay } from '../lib/essays';
-import { essayIdentity, essayPath, tagSlug } from '../lib/essays';
+import { tagSlug } from '../lib/essays';
 import EssayMeta from '../components/EssayMeta.astro';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
 	essay: Essay;
-	translations: Essay[];
 }
-const { essay, translations } = Astro.props;
-const { lang } = essayIdentity(essay);
-const alternates = translations.map((translation) => ({
-	lang: essayIdentity(translation).lang,
-	href: essayPath(translation),
-}));
-const updatedLabel = lang === 'pt' ? 'Atualizado em' : 'Updated';
-const notesLabel = lang === 'pt' ? 'Notas' : 'Notes';
-const noteLabel = lang === 'pt' ? 'Ver nota' : 'See note';
-const tagsLabel = lang === 'pt' ? 'Assuntos' : 'Tags';
+const { essay } = Astro.props;
+const lang = currentLocale(Astro.currentLocale);
+const t = useT(lang);
 const hasTags = essay.data.tags.length > 0;
 const pageTitle = `${essay.data.title} | ${SITE_TITLE}`;
 ---
 
-<BaseLayout title={pageTitle} description={essay.data.description} image={essay.data.hero_image} type="article" lang={lang} published_at={essay.data.published_at} updated_at={essay.data.updated_at} tags={essay.data.tags} alternates={alternates}>
+<BaseLayout title={pageTitle} description={essay.data.description} image={essay.data.hero_image} type="article" published_at={essay.data.published_at} updated_at={essay.data.updated_at} tags={essay.data.tags}>
 	<article class="essay-article">
 		<header class="essay-header">
-			<EssayMeta {essay} {translations} {updatedLabel} />
+			<EssayMeta {essay} updatedLabel={t('article.updated')} />
 			<h1>{essay.data.title}</h1>
 		</header>
 		{essay.data.hero_image && <figure class="hero-image">
@@ -36,13 +30,13 @@ const pageTitle = `${essay.data.title} | ${SITE_TITLE}`;
 		<section class="prose">
 			<slot />
 		</section>
-		<footer class="essay-footer sans" data-has-tags={hasTags} data-note-label={noteLabel} hidden={!hasTags}>
+		<footer class="essay-footer sans" data-has-tags={hasTags} data-note-label={t('article.seeNote')} hidden={!hasTags}>
 			<div class="essay-footnotes" hidden>
-				<h2>{notesLabel}</h2>
+				<h2>{t('article.notes')}</h2>
 				<ol></ol>
 			</div>
-			{hasTags && <ul class="tag-list" aria-label={tagsLabel}>
-				{essay.data.tags.map((tag) => <li><a href={`/tags/${tagSlug(tag)}/`}>#{tag}</a></li>)}
+			{hasTags && <ul class="tag-list" aria-label={t('article.tags')}>
+				{essay.data.tags.map((tag) => <li><a href={routeUrl(lang, 'tags', tagSlug(tag))}>#{tag}</a></li>)}
 			</ul>}
 		</footer>
 	</article>

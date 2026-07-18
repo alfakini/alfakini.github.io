@@ -1,4 +1,4 @@
-import { contentLocale } from './locale.ts';
+import { contentLocale } from '../i18n/index.ts';
 
 function isElement(node, tagName) {
 	return node?.type === 'element' && (!tagName || node.tagName === tagName);
@@ -103,7 +103,7 @@ function placeSidenotes(node, notes, placed, labels) {
 export default function rehypeFootnoteAsides() {
 	return (tree, file) => {
 		const labels =
-			contentLocale(file.data.astro?.frontmatter?.lang, file.path) === 'pt'
+			contentLocale(file.data.astro?.frontmatter?.lang, file.path) === 'pt-BR'
 				? { backreference: 'Voltar à referência', toggle: 'Alternar nota' }
 				: { backreference: 'Back to reference', toggle: 'Toggle note' };
 		const sectionIndex = tree.children.findIndex((node) => isElement(node, 'section') && hasClass(node, 'footnotes'));

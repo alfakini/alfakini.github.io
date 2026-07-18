@@ -1,23 +1,5 @@
 ---
-import { SITE_TITLE } from '../../consts';
-import { allTags, getEssays } from '../../lib/essays';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const tags = allTags(await getEssays());
+import TagIndexPage from '../../components/pages/TagIndexPage.astro';
 ---
 
-<BaseLayout title={`Tags | ${SITE_TITLE}`} description="Assuntos dos ensaios publicados.">
-	<header class="page-header">
-		<h1>Tags</h1>
-	</header>
-	<ul class="tag-index">
-		{tags.map((tag) => (
-			<li>
-				<a href={`/tags/${tag.slug}/`}>
-					<span>{tag.name}</span>
-					<small class="sans">{tag.count} {tag.count === 1 ? 'ensaio' : 'ensaios'}</small>
-				</a>
-			</li>
-		))}
-	</ul>
-</BaseLayout>
+<TagIndexPage />

@@ -7,12 +7,11 @@ export const getStaticPaths = () => getEssayStaticPaths('en');
 
 interface Props {
 	essay: Essay;
-	translations: Essay[];
 }
-const { essay, translations } = Astro.props;
+const { essay } = Astro.props;
 const { Content } = await render(essay);
 ---
 
-<ArticleLayout {essay} {translations}>
+<ArticleLayout {essay}>
 	<Content />
 </ArticleLayout>

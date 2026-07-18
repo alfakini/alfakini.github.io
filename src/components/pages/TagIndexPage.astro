@@ -1,0 +1,27 @@
+---
+import { SITE_TITLE } from '../../consts';
+import { currentLocale, useT } from '../../i18n';
+import { allTags, getEssays } from '../../lib/essays';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routeUrl } from '../../i18n/routes';
+
+const lang = currentLocale(Astro.currentLocale);
+const t = useT(lang);
+const tags = allTags(await getEssays(lang));
+---
+
+<BaseLayout title={`${t('tags.title')} | ${SITE_TITLE}`} description={t('tags.description')}>
+	<header class="page-header">
+		<h1>{t('tags.title')}</h1>
+	</header>
+	<ul class="tag-index">
+		{tags.map((tag) => (
+			<li>
+				<a href={routeUrl(lang, 'tags', tag.slug)}>
+					<span>{tag.name}</span>
+					<small class="sans">{tag.count} {tag.count === 1 ? t('tags.essay') : t('tags.essays')}</small>
+				</a>
+			</li>
+		))}
+	</ul>
+</BaseLayout>

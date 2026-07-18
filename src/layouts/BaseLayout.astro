@@ -3,7 +3,8 @@ import type { ImageMetadata } from 'astro';
 import BaseHead from '../components/BaseHead.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
-import { defaultLocale, localeCode, type Locale } from '../lib/locale';
+import { currentLocale, locales } from '../i18n';
+import { switchLocaleUrl } from '../i18n/routes';
 import '../styles/site.css';
 
 interface Props {
@@ -11,25 +12,25 @@ interface Props {
 	description: string;
 	image?: ImageMetadata;
 	type?: 'website' | 'article';
-	lang?: Locale;
 	published_at?: Date;
 	updated_at?: Date;
 	tags?: string[];
-	alternates?: Array<{ lang: Locale; href: string }>;
 }
-const { lang = defaultLocale, alternates = [], ...head } = Astro.props;
+const { ...head } = Astro.props;
+const lang = currentLocale(Astro.currentLocale);
+const alternates = locales.map((locale) => ({ lang: locale, href: switchLocaleUrl(locale, Astro.url.pathname) }));
 ---
 
 <!doctype html>
-<html lang={localeCode(lang)}>
+<html lang={lang}>
 	<head>
 		<BaseHead {...head} {lang} {alternates} />
 	</head>
 	<body>
-		<SiteHeader {lang} {alternates} />
+		<SiteHeader />
 		<main id="conteudo">
 			<slot />
 		</main>
-		<SiteFooter {lang} />
+		<SiteFooter />
 	</body>
 </html>

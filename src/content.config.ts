@@ -16,7 +16,8 @@ const essays = defineCollection({
 			published_at: z.coerce.date(),
 			updated_at: z.coerce.date().optional(),
 			hero_image: image().optional(),
-			lang: z.enum(['pt', 'en']).optional(),
+			locale: z.enum(['pt-BR', 'en']),
+			slug: z.string().min(1),
 		}),
 });
 

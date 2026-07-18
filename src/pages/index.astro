@@ -1,16 +1,5 @@
 ---
-import EssayList from '../components/EssayList.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { getEssayLanguages, getEssays } from '../lib/essays';
-import BaseLayout from '../layouts/BaseLayout.astro';
-
-const essays = (await getEssays()).slice(0, 5);
-const languages = await getEssayLanguages();
+import HomePage from '../components/pages/HomePage.astro';
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<header class="page-header home-intro">
-		<h1>Essays</h1>
-	</header>
-	<EssayList essays={essays} {languages} />
-</BaseLayout>
+<HomePage />

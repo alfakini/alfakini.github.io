@@ -4,6 +4,8 @@ description: O ensaio argumenta que a racionalidade e a democracia exigem tempo 
 published_at: 'Jun 13 2026'
 tags: ['filosofia']
 status: published
+locale: pt-BR
+slug: rationality
 ---
 
 A racionalidade exige tempo. Decisões racionais não surgem como respostas instantâneas a estímulos. Elas levam tempo e são construídas pela reflexão, relacionando o presente às nossas experiências do passado e às possíveis consequências futuras. Pensar racionalmente é criar distância entre aquilo que nos afeta e a resposta que produzimos. Nesse intervalo, podemos comparar hipóteses e reconsiderar conclusões.
