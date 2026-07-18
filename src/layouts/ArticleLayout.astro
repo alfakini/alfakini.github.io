@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { SITE_TITLE } from '../consts';
 import type { Essay } from '../lib/essays';
 import { essayIdentity, essayPath, tagSlug } from '../lib/essays';
 import EssayMeta from '../components/EssayMeta.astro';
@@ -13,9 +14,10 @@ const updatedLabel = lang === 'pt' ? 'Atualizado em' : 'Updated';
 const notesLabel = lang === 'pt' ? 'Notas' : 'Notes';
 const noteLabel = lang === 'pt' ? 'Ver nota' : 'See note';
 const hasTags = essay.data.tags.length > 0;
+const pageTitle = `${essay.data.title} | ${SITE_TITLE}`;
 ---
 
-<BaseLayout title={essay.data.title} description={essay.data.description} image={essay.data.hero_image} type="article" lang={lang} published_at={essay.data.published_at} updated_at={essay.data.updated_at} tags={essay.data.tags} alternates={alternates}>
+<BaseLayout title={pageTitle} description={essay.data.description} image={essay.data.hero_image} type="article" lang={lang} published_at={essay.data.published_at} updated_at={essay.data.updated_at} tags={essay.data.tags} alternates={alternates}>
 	<article class="essay-article">
 		<header class="essay-header">
 			<EssayMeta {essay} {translations} {updatedLabel} />
