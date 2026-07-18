@@ -678,13 +678,7 @@ main > *,
 	width: 55%;
 	padding: 1rem;
 	border: 1px solid #ccc;
-	background-color: var(--shiki-light-bg);
-	color: var(--shiki-light);
 	overflow-x: auto;
-}
-
-.prose pre.astro-code span {
-	color: var(--shiki-light);
 }
 
 .prose pre.astro-code > code {
@@ -887,17 +881,5 @@ main > *,
 
 	.prose label {
 		cursor: pointer;
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	.prose pre.astro-code {
-		border-color: #555;
-		background-color: var(--shiki-dark-bg);
-		color: var(--shiki-dark);
-	}
-
-	.prose pre.astro-code span {
-		color: var(--shiki-dark);
 	}
 }
