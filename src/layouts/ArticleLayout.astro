@@ -15,14 +15,14 @@ const noteLabel = lang === 'pt' ? 'Ver nota' : 'See note';
 const hasTags = essay.data.tags.length > 0;
 ---
 
-<BaseLayout title={essay.data.title} description={essay.data.description} image={essay.data.heroImage} type="article" lang={lang} published_at={essay.data.published_at} updatedDate={essay.data.updatedDate} tags={essay.data.tags} alternates={alternates}>
+<BaseLayout title={essay.data.title} description={essay.data.description} image={essay.data.hero_image} type="article" lang={lang} published_at={essay.data.published_at} updated_at={essay.data.updated_at} tags={essay.data.tags} alternates={alternates}>
 	<article class="essay-article">
 		<header class="essay-header">
 			<EssayMeta {essay} {translations} {updatedLabel} />
 			<h1>{essay.data.title}</h1>
 		</header>
-		{essay.data.heroImage && <figure class="hero-image">
-			<Image src={essay.data.heroImage} widths={[640, 960, 1280]} sizes="(max-width: 760px) 84vw, 48vw" alt="" />
+		{essay.data.hero_image && <figure class="hero-image">
+			<Image src={essay.data.hero_image} widths={[640, 960, 1280]} sizes="(max-width: 760px) 84vw, 48vw" alt="" />
 		</figure>}
 		<section class="prose">
 			<slot />

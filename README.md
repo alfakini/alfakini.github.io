@@ -70,10 +70,10 @@ Do not create both `my-post.md` and `my-post/pt.md`; they resolve to the same ro
 title: 'Required title'
 description: 'Required summary used by lists and metadata.'
 published_at: '2026-07-12'
-updatedDate: '2026-07-20' # optional
+updated_at: '2026-07-20' # optional
 tags: ['Astro', 'web'] # optional, defaults to []
 status: published # optional, defaults to draft
-heroImage: '../../../src/assets/example.jpg' # optional
+hero_image: '../../../src/assets/example.jpg' # optional
 lang: pt # optional for flat files; grouped filenames determine language
 ---
 ```
@@ -87,7 +87,7 @@ Use `published_at` for the publication date. `status` accepts `draft` or `publis
 Images processed by Astro should live under `src/assets`. Frontmatter paths are relative to the post file. A grouped post therefore usually uses:
 
 ```yaml
-heroImage: '../../../src/assets/example.jpg'
+hero_image: '../../../src/assets/example.jpg'
 ```
 
 Plain Markdown supports images normally. Use semantic HTML for a caption:

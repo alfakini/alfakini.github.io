@@ -14,8 +14,8 @@ const essays = defineCollection({
 			tags: z.array(z.string().min(1)).default([]),
 			status: z.enum(['draft', 'published']).default('draft'),
 			published_at: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
-			heroImage: image().optional(),
+			updated_at: z.coerce.date().optional(),
+			hero_image: image().optional(),
 			lang: z.enum(['pt', 'en']).optional(),
 		}),
 });
