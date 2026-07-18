@@ -1,7 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { SITE_AUTHOR, SITE_TITLE } from '../consts';
-import { localeCode, openGraphLocale, type Locale } from '../lib/essays';
+import { defaultLocale, localeCode, openGraphLocale, type Locale } from '../lib/locale';
 
 interface Props {
 	title: string;
@@ -16,8 +16,8 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image, type = 'website', lang = 'pt', published_at, updated_at, tags = [], alternates = [] } = Astro.props;
-const defaultAlternate = alternates.find((alternate) => alternate.lang === 'pt');
+const { title, description, image, type = 'website', lang = defaultLocale, published_at, updated_at, tags = [], alternates = [] } = Astro.props;
+const defaultAlternate = alternates.find((alternate) => alternate.lang === defaultLocale);
 ---
 
 <meta charset="utf-8" />

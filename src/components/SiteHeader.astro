@@ -1,9 +1,9 @@
 ---
 import { SITE_TITLE } from '../consts';
-import type { Locale } from '../lib/essays';
+import { defaultLocale, type Locale } from '../lib/locale';
 
 interface Props { lang?: Locale; alternates?: Array<{ lang: Locale; href: string }> }
-const { lang = 'pt', alternates = [] } = Astro.props;
+const { lang = defaultLocale, alternates = [] } = Astro.props;
 const pathname = Astro.url.pathname;
 const titleCharacters = Array.from(SITE_TITLE);
 const translation = alternates.find((alternate) => alternate.lang !== lang);

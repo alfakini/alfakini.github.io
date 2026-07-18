@@ -3,14 +3,14 @@ import type { ImageMetadata } from 'astro';
 import BaseHead from '../components/BaseHead.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
-import { localeCode, type Locale } from '../lib/essays';
+import { defaultLocale, localeCode, type Locale } from '../lib/locale';
 import '../styles/site.css';
 
 interface Props {
 	title: string; description: string; image?: ImageMetadata; type?: 'website' | 'article'; lang?: Locale;
 	published_at?: Date; updated_at?: Date; tags?: string[]; alternates?: Array<{ lang: Locale; href: string }>;
 }
-const { lang = 'pt', alternates = [], ...head } = Astro.props;
+const { lang = defaultLocale, alternates = [], ...head } = Astro.props;
 ---
 
 <!doctype html>

@@ -1,9 +1,9 @@
 ---
 import { SITE_AUTHOR } from '../consts';
-import type { Locale } from '../lib/essays';
+import { defaultLocale, type Locale } from '../lib/locale';
 
 interface Props { lang?: Locale }
-const { lang = 'pt' } = Astro.props;
+const { lang = defaultLocale } = Astro.props;
 const labels = lang === 'pt'
 	? { tags: 'Tags', nav: 'Navegação secundária' }
 	: { tags: 'Tags', nav: 'Secondary navigation' };

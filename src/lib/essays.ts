@@ -1,11 +1,8 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
+import { defaultLocale, type Locale, locales } from './locale';
 
-const locales = ['pt', 'en'] as const;
-export type Locale = (typeof locales)[number];
 export type Essay = CollectionEntry<'essays'>;
 export type EssayTag = { name: string; slug: string; count: number };
-
-const defaultLocale: Locale = 'pt';
 
 export function essayIdentity(entry: Essay): { lang: Locale; slug: string } {
 	const segments = entry.id.replace(/\.(md|mdx)$/, '').split('/');
@@ -26,14 +23,6 @@ export function essayIdentity(entry: Essay): { lang: Locale; slug: string } {
 export function essayPath(entry: Essay): string {
 	const { lang, slug } = essayIdentity(entry);
 	return lang === defaultLocale ? `/essays/${slug}/` : `/${lang}/essays/${slug}/`;
-}
-
-export function localeCode(locale: Locale): 'pt-BR' | 'en' {
-	return locale === 'pt' ? 'pt-BR' : 'en';
-}
-
-export function openGraphLocale(locale: Locale): 'pt_BR' | 'en_US' {
-	return locale === 'pt' ? 'pt_BR' : 'en_US';
 }
 
 async function loadEssays(): Promise<Essay[]> {

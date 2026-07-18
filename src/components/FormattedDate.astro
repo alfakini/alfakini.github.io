@@ -1,8 +1,8 @@
 ---
-import { localeCode, type Locale } from '../lib/essays';
+import { defaultLocale, localeCode, type Locale } from '../lib/locale';
 
 interface Props { date: Date; lang?: Locale }
-const { date, lang = 'pt' } = Astro.props;
+const { date, lang = defaultLocale } = Astro.props;
 ---
 
 <time datetime={date.toISOString()}>{date.toLocaleDateString(localeCode(lang), { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>
