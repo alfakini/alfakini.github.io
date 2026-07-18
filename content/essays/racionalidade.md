@@ -1,6 +1,6 @@
 ---
 title: 'A racionalidade exige tempo'
-description: O ensaio argumenta que a racionalidade e a democracia exigem tempo para reflexão e debate, mas plataformas digitais e IA incentivam reações imediatas, desinformação e polarização. Soluções técnicas não substituem confiança, legitimidade e negociação coletiva. A solução é humana.'
+description: O ensaio argumenta que a racionalidade e a democracia exigem tempo para reflexão e debate, mas plataformas digitais e IA incentivam reações imediatas, desinformação e polarização. Soluções técnicas não substituem confiança, legitimidade e negociação coletiva. A solução é humana.
 published_at: 'Jun 13 2026'
 tags: ['filosofia']
 status: published
