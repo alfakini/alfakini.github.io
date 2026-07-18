@@ -119,14 +119,6 @@ An explicit editorial aside can use raw semantic HTML:
 <aside>A related observation.</aside>
 ```
 
-In MDX, import the static component:
-
-```mdx
-import SideNote from '../../../src/components/SideNote.astro';
-
-<SideNote>A related observation.</SideNote>
-```
-
 ## MDX
 
 Use `.mdx` when a post needs imported assets, expressions, or Astro components. Components render to static HTML unless a client directive is explicitly added. The site avoids client directives; a small layout script moves footnotes below narrow articles.

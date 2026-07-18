@@ -82,10 +82,6 @@ body {
 	counter-reset: sidenote-counter;
 }
 
-main {
-	display: block;
-}
-
 h1 {
 	margin-top: 4rem;
 	margin-bottom: 1.5rem;
@@ -149,8 +145,7 @@ main > *,
 }
 
 .site-header,
-.site-footer,
-.section-heading {
+.site-footer {
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
@@ -180,10 +175,6 @@ main > *,
 
 .site-name .site-name-space {
 	margin-inline-end: 0.4ch;
-}
-
-.site-name [data-scramble-character].is-scrambled {
-	color: #111;
 }
 
 .site-name.is-scrambling {
@@ -283,18 +274,6 @@ main > *,
 	padding-bottom: 0;
 }
 
-.section-heading {
-	width: 90%;
-	margin-bottom: 1rem;
-	padding-bottom: 0.75rem;
-	border-bottom: 1px solid currentColor;
-}
-
-.section-heading h2,
-.section-heading a {
-	margin: 0;
-}
-
 .essay-list,
 .tag-index {
 	margin-block: 0;
@@ -376,11 +355,6 @@ main > *,
 	font-size: 1.8rem;
 }
 
-.essay-list h2 a,
-.tag-index a {
-	text-decoration: none;
-}
-
 .essay-list p,
 .essay-list ul {
 	width: auto;
@@ -398,6 +372,11 @@ main > *,
 	gap: 1.5rem;
 	padding: 0.75rem 0;
 	border-bottom: 1px solid currentColor;
+	text-decoration: none;
+}
+
+.essay-list h2 a {
+	text-decoration: none;
 }
 
 .tag-index small {
@@ -430,8 +409,6 @@ main > *,
 .hero-image {
 	margin-top: 3rem;
 	margin-bottom: 3rem;
-	padding: 0;
-	border: 0;
 	max-width: 55%;
 }
 
@@ -452,8 +429,6 @@ main > *,
 .prose p {
 	margin-top: 1.4rem;
 	margin-bottom: 1.4rem;
-	padding-right: 0;
-	vertical-align: baseline;
 }
 
 .prose > :is(p, footer, table) {
@@ -500,10 +475,6 @@ main > *,
 .prose > figure {
 	max-width: 55%;
 	margin: 0 auto 3em;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	vertical-align: baseline;
 }
 
 .prose > figure img {
@@ -568,19 +539,6 @@ main > *,
 
 .prose details {
 	width: 55%;
-}
-
-.prose .example {
-	padding-left: 2.5%;
-	border-left: 1px solid #ccc;
-}
-
-.prose .example > :first-child {
-	margin-top: 0;
-}
-
-.prose .example > :last-child {
-	margin-bottom: 0;
 }
 
 .prose .sidenote[role="note"] {
@@ -661,11 +619,6 @@ main > *,
 	margin-inline: auto;
 	font-size: 0.9rem;
 	overflow-x: auto;
-}
-
-.prose .newthought {
-	font-variant: small-caps;
-	font-size: 1.2em;
 }
 
 .prose .katex-display {
@@ -766,12 +719,6 @@ main > *,
 	}
 }
 
-@media (min-width: 761px) {
-	body {
-		padding-left: 0;
-	}
-}
-
 @media (max-width: 760px) {
 	body {
 		width: 84%;
@@ -789,7 +736,6 @@ main > *,
 
 	.site-header,
 	.site-footer,
-	.section-heading,
 	.essay-list,
 	.tag-index,
 	.home-intro h1,
@@ -827,8 +773,7 @@ main > *,
 		max-width: none;
 	}
 
-	.site-footer,
-	.section-heading {
+	.site-footer {
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 0.75rem;
@@ -848,16 +793,8 @@ main > *,
 		text-align: left;
 	}
 
-	.essay-list-languages {
-		text-align: left;
-	}
-
 	.essay-header h1 {
 		font-size: 2.8rem;
-	}
-
-	.prose .example {
-		padding-left: 1rem;
 	}
 
 	.prose label.margin-toggle:not(.sidenote-number) {
