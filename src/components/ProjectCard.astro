@@ -1,0 +1,25 @@
+---
+import { currentLocale } from '../i18n';
+import { projectPath, type Project } from '../lib/projects';
+import EntryGallery from './EntryGallery.astro';
+import EntryLinks from './EntryLinks.astro';
+import ProjectMeta from './ProjectMeta.astro';
+
+interface Props {
+	project: Project;
+}
+
+const { project }: Props = Astro.props;
+const lang = currentLocale(Astro.currentLocale);
+const { images, links } = project.data;
+---
+
+<article class="project-entry" data-category={project.data.category}>
+	<div class="project-entry-content">
+		<ProjectMeta {project} />
+		<h3 class="entry-title"><a href={projectPath(project, lang)}>{project.data.title}</a></h3>
+		<EntryGallery {images} />
+		<p class="entry-summary">{project.data.summary}</p>
+		<EntryLinks {links} />
+	</div>
+</article>

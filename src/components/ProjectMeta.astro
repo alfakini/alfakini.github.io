@@ -1,0 +1,34 @@
+---
+import { currentLocale, useT } from '../i18n';
+import { projectYear, type Project } from '../lib/projects';
+
+interface Props {
+	project: Project;
+}
+
+const { project }: Props = Astro.props;
+const lang = currentLocale(Astro.currentLocale);
+const t = useT(lang);
+const { category, start_at, end_at } = project.data;
+const categoryLabel = {
+	software: t('projects.categorySoftware'),
+	hardware: t('projects.categoryHardware'),
+	volunteer: t('projects.categoryVolunteer'),
+}[category];
+---
+
+<p class="essay-meta sans">
+	<span>
+		<time datetime={start_at}>{projectYear(start_at)}</time>
+		{
+			!(end_at !== null && projectYear(end_at) === projectYear(start_at)) && (
+				<Fragment>
+					{' '}&ndash;{' '}
+					{end_at ? <time datetime={end_at}>{projectYear(end_at)}</time> : t('projects.now')}
+				</Fragment>
+			)
+		}
+	</span>
+	<span class="meta-separator" aria-hidden="true">&middot;</span>
+	<span>{categoryLabel}</span>
+</p>

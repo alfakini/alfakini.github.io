@@ -71,6 +71,7 @@
 	--color-ink: #111;
 	--color-paper: #ffffff;
 	--color-rule: #ccc;
+	--color-muted: #666;
 	--content-width: 55%;
 	--font-serif: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
 	--font-sans: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
@@ -229,14 +230,14 @@ main > *,
 .header-nav {
 	display: flex;
 	align-items: baseline;
-	gap: 0.5rem;
+	gap: 1.5rem;
 	margin-inline-start: auto;
 }
 
 .site-footer {
 	width: var(--content-width);
 	margin-block: 4rem 2rem;
-	color: #666;
+	color: var(--color-muted);
 	font-size: 0.9rem;
 }
 
@@ -330,7 +331,7 @@ main > *,
 	text-align: right;
 }
 
-.language-switch {
+.badge {
 	display: inline-block;
 	padding: 0.05rem 0.3rem;
 	border: 1px solid currentColor;
@@ -340,16 +341,19 @@ main > *,
 	text-transform: uppercase;
 }
 
-.language-switch:hover {
+a.badge:hover {
 	color: var(--color-paper);
 	background: var(--color-ink);
 }
 
-.essay-list h2 {
+.entry-title {
 	font-size: 1.8rem;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.15;
 }
 
-.essay-list p,
+.entry-summary,
 .essay-list ul {
 	width: auto;
 	font-size: 1.15rem;
@@ -369,12 +373,233 @@ main > *,
 	text-decoration: none;
 }
 
-.essay-list h2 a {
+.entry-title a {
 	text-decoration: none;
 }
 
 .tag-index small {
 	font-size: 1rem;
+}
+
+.projects-header h1 {
+	margin-bottom: 0;
+}
+
+.projects-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1.6rem;
+	width: var(--content-width);
+	margin: 1.5rem auto 0;
+	font-size: 1rem;
+	line-height: 1.4;
+}
+
+.projects-legend span {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	white-space: nowrap;
+}
+
+.projects-journey {
+	position: relative;
+	width: 75%;
+	margin: 2.5rem auto 0;
+}
+
+.projects-journey::before {
+	content: "";
+	position: absolute;
+	top: 1.5rem;
+	bottom: 1rem;
+	left: 50%;
+	border-left: 1px solid var(--color-rule);
+}
+
+.projects-now,
+.projects-year {
+	position: relative;
+	margin: 0 0 2.5rem;
+	font-weight: 400;
+	line-height: 1.4;
+	text-align: center;
+}
+
+.projects-now {
+	margin-bottom: 3.5rem;
+	color: var(--color-muted);
+	font-size: 1rem;
+}
+
+.projects-year {
+	font-size: 1.4rem;
+}
+
+.projects-now span {
+	display: inline-block;
+	padding: 0 0.75rem;
+	background: var(--color-paper);
+}
+
+.projects-year .badge {
+	background: var(--color-paper);
+}
+
+.projects-now::after,
+.project-entry::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	width: 12px;
+	height: 12px;
+	border: 1px solid var(--color-ink);
+	background: var(--color-ink);
+	transform: translate(-50%, -50%);
+}
+
+.projects-now::after {
+	top: 2.4rem;
+	border-radius: 50%;
+	background: var(--color-paper);
+}
+
+.project-entry {
+	position: relative;
+	margin: 0 0 4.5rem;
+}
+
+.project-entry:last-child {
+	margin-bottom: 1rem;
+}
+
+.project-entry-content {
+	position: relative;
+	box-sizing: border-box;
+	width: calc(50% - 2.5rem);
+}
+
+.project-entry:nth-of-type(odd) .project-entry-content {
+	margin-right: auto;
+	text-align: right;
+}
+
+.project-entry:nth-of-type(even) .project-entry-content {
+	margin-left: auto;
+	text-align: left;
+}
+
+.project-entry::before {
+	top: 0.75rem;
+}
+
+.project-entry[data-category="hardware"]::before {
+	background: var(--color-paper);
+}
+
+.project-entry[data-category="volunteer"]::before {
+	border-radius: 50%;
+}
+
+.entry-gallery {
+	margin: 1rem 0 0;
+}
+
+.entry-image,
+.entry-thumbs {
+	width: 200px;
+	max-width: 100%;
+}
+
+.project-entry:nth-of-type(odd) .entry-image,
+.project-entry:nth-of-type(odd) .entry-thumbs {
+	margin-left: auto;
+}
+
+.entry-image,
+.entry-thumb {
+	display: block;
+	aspect-ratio: 4 / 3;
+	border: 1px solid var(--color-rule);
+	object-fit: cover;
+}
+
+.entry-image {
+	height: 150px;
+}
+
+.entry-thumb {
+	width: 100%;
+	height: auto;
+}
+
+.entry-thumbs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+}
+
+.project-entry .essay-meta {
+	flex-wrap: wrap;
+	margin-top: 1.5rem;
+}
+
+.project-entry:nth-of-type(odd) .essay-meta {
+	justify-content: flex-end;
+}
+
+.meta-separator {
+	margin: 0 0.2em 0 0;
+	font-size: 2em;
+	line-height: 0;
+}
+
+.category-glyph {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border: 1px solid currentColor;
+	background: currentColor;
+}
+
+.category-glyph[data-category="hardware"] {
+	background: var(--color-paper);
+}
+
+.category-glyph[data-category="volunteer"] {
+	border-radius: 50%;
+}
+
+.project-entry .entry-title {
+	margin: 0.6rem 0 0;
+}
+
+.project-entry .entry-summary {
+	margin: 0.8rem 0 0;
+}
+
+/* The title link stretches over the whole entry, so a click anywhere in it
+   opens the project. Links inside the entry stay above that overlay. */
+.project-entry .entry-title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.project-entry:hover .entry-title a,
+.project-entry .entry-title a:focus-visible {
+	text-decoration: underline;
+}
+
+.entry-links a {
+	position: relative;
+}
+
+.entry-links {
+	margin: 0.8rem 0 0;
+	font-size: 1.1rem;
+	line-height: 1.55;
 }
 
 .essay-article {
@@ -391,13 +616,20 @@ main > *,
 	text-wrap: balance;
 }
 
-.essay-header .subtitle {
+.essay-header .subtitle,
+.projects-subtitle {
 	display: block;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	font-size: 1.8rem;
 	font-style: italic;
 	line-height: 1.25;
+}
+
+.projects-subtitle {
+	width: var(--content-width);
+	margin-inline: auto;
+	margin-bottom: 0;
 }
 
 .hero-image {
@@ -721,6 +953,7 @@ main > *,
 
 	.site-header {
 		gap: 1rem;
+		flex-wrap: wrap;
 	}
 
 	.prose > :is(img, video),
@@ -812,5 +1045,54 @@ main > *,
 
 	.prose label {
 		cursor: pointer;
+	}
+
+	.projects-subtitle,
+	.projects-legend,
+	.projects-journey {
+		width: 100%;
+	}
+
+	.projects-journey::before {
+		left: 4px;
+	}
+
+	.projects-now,
+	.projects-year {
+		padding-left: 2rem;
+		text-align: left;
+	}
+
+	.projects-now span {
+		padding: 0 0.5rem 0 0;
+	}
+
+	.projects-now::after {
+		left: 4px;
+	}
+
+	.project-entry {
+		padding-left: 2rem;
+	}
+
+	.project-entry-content,
+	.project-entry:nth-of-type(odd) .project-entry-content,
+	.project-entry:nth-of-type(even) .project-entry-content {
+		width: 100%;
+		margin: 0;
+		text-align: left;
+	}
+
+	.project-entry::before {
+		left: 4px;
+	}
+
+	.project-entry:nth-of-type(odd) .entry-image,
+	.project-entry:nth-of-type(odd) .entry-thumbs {
+		margin-left: 0;
+	}
+
+	.project-entry:nth-of-type(odd) .essay-meta {
+		justify-content: flex-start;
 	}
 }

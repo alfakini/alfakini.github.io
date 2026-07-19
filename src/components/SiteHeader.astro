@@ -2,6 +2,7 @@
 import { SITE_TITLE } from '../consts';
 import { currentLocale, defaultLocale, type Locale, useT } from '../i18n';
 import { routeUrl, switchLocaleUrl } from '../i18n/routes';
+import Badge from './Badge.astro';
 
 const lang = currentLocale(Astro.currentLocale);
 const pathname = Astro.url.pathname;
@@ -21,12 +22,13 @@ const translationLabel = translation === 'pt-BR' ? t('common.readInPortuguese') 
 	<div class="header-nav">
 		<nav aria-label={t('header.navigation')}>
 			<ul>
-				<li><a href={routeUrl(lang, 'home')} aria-current={pathname === routeUrl(lang, 'home') ? 'page' : undefined}>Essays</a></li>
+				<li><a href={routeUrl(lang, 'home')} aria-current={pathname === routeUrl(lang, 'home') ? 'page' : undefined}>{t('header.essays')}</a></li>
+				<li><a href={routeUrl(lang, 'projects')} aria-current={pathname === routeUrl(lang, 'projects') ? 'page' : undefined}>{t('header.projects')}</a></li>
 			</ul>
 		</nav>
-		<a class="language-switch" href={switchLocaleUrl(translation, pathname)} hreflang={translation} lang={translation} rel="alternate" aria-label={translationLabel}>
+		<Badge href={switchLocaleUrl(translation, pathname)} hreflang={translation} lang={translation} rel="alternate" aria-label={translationLabel}>
 			{translation === 'pt-BR' ? 'PT' : 'EN'}
-		</a>
+		</Badge>
 	</div>
 </header>
 

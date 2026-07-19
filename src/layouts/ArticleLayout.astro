@@ -1,11 +1,11 @@
 ---
-import { Image } from 'astro:assets';
 import { SITE_TITLE } from '../consts';
 import { currentLocale, useT } from '../i18n';
 import { routeUrl } from '../i18n/routes';
 import type { Essay } from '../lib/essays';
 import { tagSlug } from '../lib/essays';
 import EssayMeta from '../components/EssayMeta.astro';
+import HeroImage from '../components/HeroImage.astro';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -24,9 +24,7 @@ const pageTitle = `${essay.data.title} | ${SITE_TITLE}`;
 			<EssayMeta {essay} updatedLabel={t('article.updated')} />
 			<h1>{essay.data.title}</h1>
 		</header>
-		{essay.data.hero_image && <figure class="hero-image">
-			<Image src={essay.data.hero_image} widths={[640, 960, 1280]} sizes="(max-width: 760px) 84vw, 48vw" alt="" />
-		</figure>}
+		{essay.data.hero_image && <HeroImage src={essay.data.hero_image} />}
 		<section class="prose">
 			<slot />
 		</section>

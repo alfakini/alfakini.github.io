@@ -7,6 +7,8 @@ export const translations: TranslationDictionary = {
 	},
 	header: {
 		navigation: 'Main',
+		essays: 'Essays',
+		projects: 'Projects',
 		skipToContent: 'Skip to content',
 	},
 	footer: {
@@ -24,5 +26,13 @@ export const translations: TranslationDictionary = {
 		essay: 'essay',
 		essays: 'essays',
 		title: 'Tags',
+	},
+	projects: {
+		categoryHardware: 'Hardware',
+		categorySoftware: 'Software',
+		categoryVolunteer: 'Volunteer',
+		description: 'Software, hardware, and volunteer projects.',
+		now: 'Now',
+		title: 'Projects',
 	},
 };

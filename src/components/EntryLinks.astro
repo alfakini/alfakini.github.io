@@ -1,0 +1,20 @@
+---
+interface Props {
+	links: { label: string; href: string }[];
+}
+
+const { links }: Props = Astro.props;
+---
+
+{
+	links.length > 0 && (
+		<p class="entry-links">
+			{links.map((link, index) => (
+				<Fragment>
+					<a href={link.href}>{link.label}</a>
+					{index < links.length - 1 && <span aria-hidden="true"> &middot; </span>}
+				</Fragment>
+			))}
+		</p>
+	)
+}

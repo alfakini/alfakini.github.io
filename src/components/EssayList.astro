@@ -16,8 +16,8 @@ const lang = currentLocale(Astro.currentLocale);
 		return (
 			<li>
 				<EssayMeta {essay} />
-				<h2><a href={routeUrl(lang, 'essays', essay.data.slug)}>{essay.data.title}</a></h2>
-				<p>{essay.data.description}</p>
+				<h2 class="entry-title"><a href={routeUrl(lang, 'essays', essay.data.slug)}>{essay.data.title}</a></h2>
+				<p class="entry-summary">{essay.data.description}</p>
 			</li>
 		);
 	})}

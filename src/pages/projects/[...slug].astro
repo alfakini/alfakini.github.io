@@ -1,0 +1,17 @@
+---
+import { render } from 'astro:content';
+import { getProjectStaticPaths, type Project } from '../../lib/projects';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+export const getStaticPaths = () => getProjectStaticPaths('pt-BR');
+
+interface Props {
+	project: Project;
+}
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<ProjectLayout {project}>
+	<Content />
+</ProjectLayout>

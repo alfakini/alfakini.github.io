@@ -48,9 +48,11 @@ The site uses Astro's built-in i18n routing with Brazilian Portuguese (`pt-BR`) 
 /                         Portuguese home
 /essays/my-post/          Portuguese essay
 /tags/                    Portuguese tags
+/projects/                Portuguese projects
 /en/                      English home
 /en/essays/my-post/       English essay
 /en/tags/                 English tags
+/en/projects/             English projects
 /rss.xml                  Global feed, preferring English essays
 ```
 
@@ -100,6 +102,47 @@ slug: my-post # required and shared by translations
 Production builds exclude drafts from routes, lists, tags, RSS, sitemap data, language links, and metadata. The single global RSS feed uses English content when a published English translation exists and otherwise uses Portuguese. Development includes drafts for previewing, but drafts are never emitted to the feed.
 
 Use `published_at` for the publication date. `status` accepts `draft` or `published`.
+
+## Create a project
+
+Projects live under `content/projects` and are displayed newest-first by `start_at`. The page alternates entries between the left and right sides of a central timeline on desktop and uses a single column on mobile.
+
+A Portuguese-only project is a flat file:
+
+```text
+content/projects/my-project.md
+```
+
+Translated projects use a shared directory:
+
+```text
+content/projects/my-project/pt.md
+content/projects/my-project/en.md
+```
+
+The English projects page falls back to the Portuguese variant when an English translation is unavailable. Project bodies are stored as Markdown but the timeline currently displays the summary only.
+
+Project frontmatter must include:
+
+```yaml
+---
+title: 'Project title'
+category: software # software, hardware, or volunteer
+start_at: '2025-03'
+end_at: '2026-01' # use null for ongoing projects
+summary: 'Short description shown in the timeline.'
+images: # optional, relative to the entry
+  - './lead.png'
+  - './detail.png'
+links:
+  - label: GitHub
+    href: https://github.com/example/project
+---
+```
+
+The first entry in `images` leads the project: it is the timeline image, the hero on the project page, and the social preview. The rest render as thumbnails under the timeline image and full-width below the project body.
+
+Each link requires a non-empty label and an absolute `http` or `https` URL.
 
 ## Images and figures
 

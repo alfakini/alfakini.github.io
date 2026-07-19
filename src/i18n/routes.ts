@@ -4,6 +4,7 @@ import type { Locale } from './index';
 export const routes = {
 	home: '',
 	essays: 'essays',
+	projects: 'projects',
 	tags: 'tags',
 	rss: 'rss.xml',
 } as const;

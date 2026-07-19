@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'>;
+
+const { href, class: className, ...attributes } = Astro.props;
+const classes = ['badge', className];
+---
+
+{
+	href ? (<a class:list={classes} href={href} {...attributes}><slot /></a>)
+       : (<span class:list={classes} {...attributes}><slot /></span>)
+}

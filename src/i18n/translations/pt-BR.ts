@@ -5,6 +5,8 @@ export const translations = {
 	},
 	header: {
 		navigation: 'Principal',
+		essays: 'Ensaios',
+		projects: 'Projetos',
 		skipToContent: 'Pular para o conteúdo',
 	},
 	footer: {
@@ -22,6 +24,14 @@ export const translations = {
 		essay: 'ensaio',
 		essays: 'ensaios',
 		title: 'Tags',
+	},
+	projects: {
+		categoryHardware: 'Hardware',
+		categorySoftware: 'Software',
+		categoryVolunteer: 'Voluntariado',
+		description: 'Projetos de software, hardware e voluntariado.',
+		now: 'Agora',
+		title: 'Projetos',
 	},
 } as const;
 
