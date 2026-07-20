@@ -12,6 +12,15 @@ const essays = defineCollection({
 			title: z.string().min(1),
 			description: z.string().min(1),
 			tags: z.array(z.string().min(1)).default([]),
+			gallery: z.array(image()).default([]),
+			links: z
+				.array(
+					z.object({
+						label: z.string().min(1),
+						href: z.url({ protocol: /^https?$/ }),
+					}),
+				)
+				.default([]),
 			status: z.enum(['draft', 'published']).default('draft'),
 			published_at: z.coerce.date(),
 			updated_at: z.coerce.date().optional(),
@@ -34,10 +43,10 @@ const projects = defineCollection({
 		z
 			.object({
 				title: z.string().min(1),
-				category: z.enum(['software', 'hardware', 'volunteer']),
+				description: z.string().min(1),
+				tags: z.array(z.string().min(1)).default([]),
 				start_at: yearMonth,
 				end_at: yearMonth.nullable(),
-				summary: z.string().min(1),
 				links: z
 					.array(
 						z.object({
@@ -46,8 +55,7 @@ const projects = defineCollection({
 						}),
 					)
 					.default([]),
-				// The first image leads the entry; the rest become thumbnails.
-				images: z.array(image()).default([]),
+				gallery: z.array(image()).default([]),
 			})
 			.refine(({ start_at, end_at }) => end_at === null || end_at >= start_at, {
 				message: 'end_at must not precede start_at',
@@ -55,4 +63,22 @@ const projects = defineCollection({
 			}),
 });
 
-export const collections = { essays, projects };
+const talks = defineCollection({
+	loader: glob({
+		base: './content/talks',
+		pattern: '**/*.{md,mdx}',
+	}),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string().min(1),
+			description: z.string().min(1),
+			tags: z.array(z.string().min(1)).default([]),
+			status: z.enum(['draft', 'published']).default('draft'),
+			published_at: z.coerce.date(),
+			hero_image: image().optional(),
+			locale: z.enum(['pt-BR', 'en']),
+			slug: z.string().min(1),
+		}),
+});
+
+export const collections = { essays, projects, talks };

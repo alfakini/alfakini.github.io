@@ -1,41 +1,53 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { SITE_TITLE } from '../consts';
 import { currentLocale, useT } from '../i18n';
 import { routeUrl } from '../i18n/routes';
-import type { Essay } from '../lib/essays';
 import { tagSlug } from '../lib/essays';
-import EssayMeta from '../components/EssayMeta.astro';
 import HeroImage from '../components/HeroImage.astro';
 import BaseLayout from './BaseLayout.astro';
 
-interface Props {
-	essay: Essay;
+interface Article {
+	title: string;
+	description: string;
+	tags: string[];
+	hero_image?: ImageMetadata;
+	published_at?: Date;
+	updated_at?: Date;
 }
-const { essay } = Astro.props;
+
+interface Props {
+	article: Article;
+	image?: ImageMetadata;
+	linkTags?: boolean;
+}
+const { article, image = article.hero_image, linkTags = false }: Props = Astro.props;
 const lang = currentLocale(Astro.currentLocale);
 const t = useT(lang);
-const hasTags = essay.data.tags.length > 0;
-const pageTitle = `${essay.data.title} | ${SITE_TITLE}`;
+const hasTags = article.tags.length > 0;
+const hasFooter = Astro.slots.has('footer');
+const pageTitle = `${article.title} | ${SITE_TITLE}`;
 ---
 
-<BaseLayout title={pageTitle} description={essay.data.description} image={essay.data.hero_image} type="article" published_at={essay.data.published_at} updated_at={essay.data.updated_at} tags={essay.data.tags}>
+<BaseLayout title={pageTitle} description={article.description} {image} type="article" published_at={article.published_at} updated_at={article.updated_at} tags={article.tags}>
 	<article class="essay-article">
 		<header class="essay-header">
-			<EssayMeta {essay} updatedLabel={t('article.updated')} />
-			<h1>{essay.data.title}</h1>
+			<slot name="meta" />
+			<h1>{article.title}</h1>
 		</header>
-		{essay.data.hero_image && <HeroImage src={essay.data.hero_image} />}
+		{article.hero_image && <HeroImage src={article.hero_image} />}
 		<section class="prose">
 			<slot />
 		</section>
-		<footer class="essay-footer sans" data-has-tags={hasTags} data-note-label={t('article.seeNote')} hidden={!hasTags}>
+		<footer class="essay-footer sans" data-has-tags={hasTags} data-has-footer={hasFooter} data-note-label={t('article.seeNote')} hidden={!hasTags && !hasFooter}>
 			<div class="essay-footnotes" hidden>
 				<h2>{t('article.notes')}</h2>
 				<ol></ol>
 			</div>
 			{hasTags && <ul class="tag-list" aria-label={t('article.tags')}>
-				{essay.data.tags.map((tag) => <li><a href={routeUrl(lang, 'tags', tagSlug(tag))}>#{tag}</a></li>)}
+				{article.tags.map((tag) => <li>{linkTags ? <a href={routeUrl(lang, 'tags', tagSlug(tag))}>#{tag}</a> : <>#{tag}</>}</li>)}
 			</ul>}
+			<slot name="footer" />
 		</footer>
 	</article>
 </BaseLayout>
@@ -82,7 +94,7 @@ const pageTitle = `${essay.data.title} | ${SITE_TITLE}`;
 				item.remove();
 			}
 			footnotes.hidden = true;
-			footer.hidden = footer.dataset.hasTags !== 'true';
+			footer.hidden = footer.dataset.hasTags !== 'true' && footer.dataset.hasFooter !== 'true';
 		};
 
 		updateFootnotes();

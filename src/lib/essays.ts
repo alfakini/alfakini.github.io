@@ -6,7 +6,8 @@ export type Essay = CollectionEntry<'essays'>;
 export type EssayTag = { name: string; slug: string; count: number };
 
 export function essayIdentity(entry: Essay): { lang: Locale; slug: string } {
-	const segments = entry.id.replace(/\.(md|mdx)$/, '').split('/');
+	const sourcePath = entry.filePath ?? entry.id;
+	const segments = sourcePath.replace(/\.(md|mdx)$/, '').split('/');
 	const filename = segments.at(-1);
 	const groupedLocale = filename === 'pt' ? 'pt-BR' : locales.find((locale) => locale === filename);
 
@@ -70,8 +71,9 @@ function assertEssayTranslations(entries: Essay[]): void {
 
 	for (const entry of entries) {
 		const identity = essayIdentity(entry);
-		if (identity.lang === 'en' && !/(?:^|[/\\])en\.mdx?$/.test(entry.id)) {
-			throw new Error(`English essays must use a grouped filename: ${entry.id}`);
+		const sourcePath = entry.filePath ?? entry.id;
+		if (identity.lang === 'en' && !/(?:^|[/\\])en\.mdx?$/.test(sourcePath)) {
+			throw new Error(`English essays must use a grouped filename: ${sourcePath}`);
 		}
 		variants.set(identity.slug, [...(variants.get(identity.slug) ?? []), entry]);
 	}

@@ -11,15 +11,15 @@ interface Props {
 
 const { project }: Props = Astro.props;
 const lang = currentLocale(Astro.currentLocale);
-const { images, links } = project.data;
+const { gallery, links } = project.data;
 ---
 
-<article class="project-entry" data-category={project.data.category}>
+<article class="project-entry">
 	<div class="project-entry-content">
 		<ProjectMeta {project} />
 		<h3 class="entry-title"><a href={projectPath(project, lang)}>{project.data.title}</a></h3>
-		<EntryGallery {images} />
-		<p class="entry-summary">{project.data.summary}</p>
+		<EntryGallery images={gallery} />
+		<p class="entry-summary">{project.data.description}</p>
 		<EntryLinks {links} />
 	</div>
 </article>

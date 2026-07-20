@@ -1,5 +1,7 @@
 ---
 import { render } from 'astro:content';
+import EssayMeta from '../../../components/EssayMeta.astro';
+import { currentLocale, useT } from '../../../i18n';
 import { getEssayStaticPaths, type Essay } from '../../../lib/essays';
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 
@@ -10,8 +12,11 @@ interface Props {
 }
 const { essay } = Astro.props;
 const { Content } = await render(essay);
+const lang = currentLocale(Astro.currentLocale);
+const t = useT(lang);
 ---
 
-<ArticleLayout {essay}>
+<ArticleLayout article={essay.data} linkTags>
+	<EssayMeta slot="meta" {essay} updatedLabel={t('article.updated')} />
 	<Content />
 </ArticleLayout>

@@ -26,10 +26,7 @@ export const translations = {
 		title: 'Tags',
 	},
 	projects: {
-		categoryHardware: 'Hardware',
-		categorySoftware: 'Software',
-		categoryVolunteer: 'Voluntariado',
-		description: 'Projetos de software, hardware e voluntariado.',
+		description: 'Projetos pessoais e profissionais.',
 		now: 'Agora',
 		title: 'Projetos',
 	},

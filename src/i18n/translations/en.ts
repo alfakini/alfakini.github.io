@@ -28,10 +28,7 @@ export const translations: TranslationDictionary = {
 		title: 'Tags',
 	},
 	projects: {
-		categoryHardware: 'Hardware',
-		categorySoftware: 'Software',
-		categoryVolunteer: 'Volunteer',
-		description: 'Software, hardware, and volunteer projects.',
+		description: 'Personal and professional projects.',
 		now: 'Now',
 		title: 'Projects',
 	},

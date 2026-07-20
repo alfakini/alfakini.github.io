@@ -5,17 +5,18 @@ interface Props {
 	images: ImageMetadata[];
 }
 
-const [lead, ...thumbs]: ImageMetadata[] = Astro.props.images;
+const [lead, ...images]: ImageMetadata[] = Astro.props.images;
+const thumbs = images.slice(0, 3);
 ---
 
 {
 	lead && (
 		<figure class="entry-gallery">
-			<Image class="entry-image" src={lead} widths={[200, 400]} sizes="200px" alt="" />
+			<Image class="entry-image" src={lead} widths={[300, 600]} sizes="300px" alt="" />
 			{thumbs.length > 0 && (
 				<div class="entry-thumbs">
 					{thumbs.map((thumb) => (
-						<Image class="entry-thumb" src={thumb} widths={[64, 128]} sizes="64px" alt="" />
+						<Image class="entry-thumb" src={thumb} widths={[96, 192]} sizes="96px" alt="" />
 					))}
 				</div>
 			)}

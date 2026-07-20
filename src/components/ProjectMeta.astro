@@ -9,12 +9,7 @@ interface Props {
 const { project }: Props = Astro.props;
 const lang = currentLocale(Astro.currentLocale);
 const t = useT(lang);
-const { category, start_at, end_at } = project.data;
-const categoryLabel = {
-	software: t('projects.categorySoftware'),
-	hardware: t('projects.categoryHardware'),
-	volunteer: t('projects.categoryVolunteer'),
-}[category];
+const { start_at, end_at } = project.data;
 ---
 
 <p class="essay-meta sans">
@@ -29,6 +24,4 @@ const categoryLabel = {
 			)
 		}
 	</span>
-	<span class="meta-separator" aria-hidden="true">&middot;</span>
-	<span>{categoryLabel}</span>
 </p>

@@ -3,7 +3,6 @@ import { defaultLocale, type Locale } from '../i18n';
 import { routeUrl } from '../i18n/routes';
 
 export type Project = CollectionEntry<'projects'>;
-export type ProjectCategory = Project['data']['category'];
 
 /** Grouped translations mirror the essay convention: pt.md, pt-BR.md, or en.md. */
 export function projectIdentity(entry: Project): { lang: Locale; slug: string } {
@@ -53,9 +52,10 @@ function assertProjectTranslations(groups: Map<string, Project[]>): void {
 		if (english.length > 0) {
 			const [pt, en] = [portuguese[0], english[0]];
 			if (
-				pt.data.category !== en.data.category ||
 				pt.data.start_at !== en.data.start_at ||
-				pt.data.end_at !== en.data.end_at
+				pt.data.end_at !== en.data.end_at ||
+				pt.data.tags.length !== en.data.tags.length ||
+				pt.data.tags.some((tag) => !en.data.tags.includes(tag))
 			) {
 				throw new Error(`Project metadata mismatch for ${slug}`);
 			}

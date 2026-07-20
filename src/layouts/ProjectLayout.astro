@@ -1,41 +1,26 @@
 ---
-import { SITE_TITLE } from '../consts';
 import type { Project } from '../lib/projects';
-import HeroImage from '../components/HeroImage.astro';
 import ProjectMeta from '../components/ProjectMeta.astro';
-import BaseLayout from './BaseLayout.astro';
+import ArticleLayout from './ArticleLayout.astro';
 
 interface Props {
 	project: Project;
 }
 const { project }: Props = Astro.props;
-const [hero, ...rest] = project.data.images;
+const [image] = project.data.gallery;
 const { links } = project.data;
-const pageTitle = `${project.data.title} | ${SITE_TITLE}`;
 ---
 
-<BaseLayout title={pageTitle} description={project.data.summary} image={hero} type="article">
-	<article class="essay-article">
-		<header class="essay-header">
-			<ProjectMeta {project} />
-			<h1>{project.data.title}</h1>
-		</header>
-		{hero && <HeroImage src={hero} />}
-		<section class="prose">
-			<p>{project.data.summary}</p>
-			<slot />
-			{rest.map((item) => <HeroImage src={item} />)}
-		</section>
-		{
-			links.length > 0 && (
-				<footer class="essay-footer sans">
-					<ul class="tag-list">
-						{links.map((link) => (
-							<li><a href={link.href}>{link.label}</a></li>
-						))}
-					</ul>
-				</footer>
-			)
-		}
-	</article>
-</BaseLayout>
+<ArticleLayout article={project.data} {image}>
+	<ProjectMeta slot="meta" {project} />
+	<slot />
+	{
+		links.length > 0 && (
+			<ul slot="footer" class="tag-list">
+				{links.map((link) => (
+					<li><a href={link.href}>{link.label}</a></li>
+				))}
+			</ul>
+		)
+	}
+</ArticleLayout>

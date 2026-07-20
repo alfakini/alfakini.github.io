@@ -493,27 +493,24 @@ a.badge:hover {
 	top: 0.75rem;
 }
 
-.project-entry[data-category="hardware"]::before {
-	background: var(--color-paper);
-}
-
-.project-entry[data-category="volunteer"]::before {
-	border-radius: 50%;
-}
-
 .entry-gallery {
 	margin: 1rem 0 0;
 }
 
 .entry-image,
 .entry-thumbs {
-	width: 200px;
+	width: 300px;
 	max-width: 100%;
 }
 
 .project-entry:nth-of-type(odd) .entry-image,
 .project-entry:nth-of-type(odd) .entry-thumbs {
 	margin-left: auto;
+}
+
+.project-entry:nth-of-type(even) .entry-image,
+.project-entry:nth-of-type(even) .entry-thumbs {
+	margin-right: auto;
 }
 
 .entry-image,
@@ -525,7 +522,7 @@ a.badge:hover {
 }
 
 .entry-image {
-	height: 150px;
+	height: 225px;
 }
 
 .entry-thumb {
@@ -547,28 +544,6 @@ a.badge:hover {
 
 .project-entry:nth-of-type(odd) .essay-meta {
 	justify-content: flex-end;
-}
-
-.meta-separator {
-	margin: 0 0.2em 0 0;
-	font-size: 2em;
-	line-height: 0;
-}
-
-.category-glyph {
-	display: inline-block;
-	width: 8px;
-	height: 8px;
-	border: 1px solid currentColor;
-	background: currentColor;
-}
-
-.category-glyph[data-category="hardware"] {
-	background: var(--color-paper);
-}
-
-.category-glyph[data-category="volunteer"] {
-	border-radius: 50%;
 }
 
 .project-entry .entry-title {
@@ -1089,8 +1064,11 @@ a.badge:hover {
 	}
 
 	.project-entry:nth-of-type(odd) .entry-image,
-	.project-entry:nth-of-type(odd) .entry-thumbs {
+	.project-entry:nth-of-type(odd) .entry-thumbs,
+	.project-entry:nth-of-type(even) .entry-image,
+	.project-entry:nth-of-type(even) .entry-thumbs {
 		margin-left: 0;
+		margin-right: auto;
 	}
 
 	.project-entry:nth-of-type(odd) .essay-meta {

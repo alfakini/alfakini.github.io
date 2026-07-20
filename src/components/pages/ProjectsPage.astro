@@ -1,7 +1,7 @@
 ---
 import { SITE_TITLE } from '../../consts';
 import { currentLocale, useT } from '../../i18n';
-import { getProjects, groupProjectsByYear, type ProjectCategory } from '../../lib/projects';
+import { getProjects, groupProjectsByYear } from '../../lib/projects';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Badge from '../Badge.astro';
 import ProjectCard from '../ProjectCard.astro';
@@ -10,28 +10,12 @@ const lang = currentLocale(Astro.currentLocale);
 const t = useT(lang);
 const years = groupProjectsByYear(await getProjects(lang));
 const pageTitle = `${t('projects.title')} | ${SITE_TITLE}`;
-const projectCategories = ['software', 'hardware', 'volunteer'] as const satisfies readonly ProjectCategory[];
-const categoryLabels = {
-	software: t('projects.categorySoftware'),
-	hardware: t('projects.categoryHardware'),
-	volunteer: t('projects.categoryVolunteer'),
-};
 ---
 
 <BaseLayout title={pageTitle} description={t('projects.description')}>
 	<header class="page-header projects-header">
 		<h1>{t('projects.title')}</h1>
 		<p class="projects-subtitle">{t('projects.description')}</p>
-		<p class="projects-legend sans">
-			{
-				projectCategories.map((category) => (
-					<span>
-						<i class="category-glyph" data-category={category} aria-hidden="true"></i>
-						{categoryLabels[category]}
-					</span>
-				))
-			}
-		</p>
 	</header>
 	<section class="projects-journey" aria-label={t('projects.title')}>
 		<p class="projects-now"><span class="sans">{t('projects.now')}</span></p>
