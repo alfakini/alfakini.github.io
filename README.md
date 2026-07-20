@@ -92,8 +92,10 @@ description: 'Required summary used by lists and metadata.'
 published_at: '2026-07-12'
 updated_at: '2026-07-20' # optional
 tags: ['Astro', 'web'] # optional, defaults to []
+gallery: [] # optional, not rendered by the essay page
+links: [] # optional, not rendered by the essay page
 status: published # optional, defaults to draft
-hero_image: '../../../src/assets/example.jpg' # optional
+hero_image: './cover.png' # optional
 locale: pt-BR # required: pt-BR or en
 slug: my-post # required and shared by translations
 ---
@@ -120,18 +122,18 @@ content/projects/my-project/pt.md
 content/projects/my-project/en.md
 ```
 
-The English projects page falls back to the Portuguese variant when an English translation is unavailable. Project bodies are stored as Markdown but the timeline currently displays the summary only.
+The English projects page falls back to the Portuguese variant when an English translation is unavailable. Project bodies are stored as Markdown and render on the project detail page.
 
 Project frontmatter must include:
 
 ```yaml
 ---
 title: 'Project title'
-category: software # software, hardware, or volunteer
+description: 'Short description shown in the timeline.'
+tags: ['software'] # optional, defaults to []
 start_at: '2025-03'
 end_at: '2026-01' # use null for ongoing projects
-summary: 'Short description shown in the timeline.'
-images: # optional, relative to the entry
+gallery: # optional, relative to the entry
   - './lead.png'
   - './detail.png'
 links:
@@ -140,16 +142,17 @@ links:
 ---
 ```
 
-The first entry in `images` leads the project: it is the timeline image, the hero on the project page, and the social preview. The rest render as thumbnails under the timeline image and full-width below the project body.
+The first entry in `gallery` leads the project timeline entry and is used for the social preview. The remaining entries render as thumbnails in the timeline.
 
 Each link requires a non-empty label and an absolute `http` or `https` URL.
 
 ## Images and figures
 
-Images processed by Astro should live under `src/assets`. Frontmatter paths are relative to the post file. A grouped post therefore usually uses:
+Frontmatter image paths are relative to the content file. A grouped project therefore usually uses:
 
 ```yaml
-hero_image: '../../../src/assets/example.jpg'
+gallery:
+  - './lead.png'
 ```
 
 Plain Markdown supports images normally. Use semantic HTML for a caption:
