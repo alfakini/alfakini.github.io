@@ -27,8 +27,12 @@ export const translations = {
 	},
 	projects: {
 		description: 'Projetos pessoais e profissionais.',
+		hardware: 'Hardware',
+		legend: 'Categorias de projeto',
 		now: 'Agora',
+		software: 'Software',
 		title: 'Projetos',
+		volunteer: 'Voluntariado',
 	},
 } as const;
 

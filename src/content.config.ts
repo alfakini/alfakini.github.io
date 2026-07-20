@@ -44,6 +44,7 @@ const projects = defineCollection({
 			.object({
 				title: z.string().min(1),
 				description: z.string().min(1),
+				category: z.enum(['software', 'hardware', 'volunteer']),
 				tags: z.array(z.string().min(1)).default([]),
 				start_at: yearMonth,
 				end_at: yearMonth.nullable(),

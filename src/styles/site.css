@@ -390,16 +390,44 @@ a.badge:hover {
 	flex-wrap: wrap;
 	gap: 0.4rem 1.6rem;
 	width: var(--content-width);
-	margin: 1.5rem auto 0;
+	margin: 1rem auto 0;
+	padding: 0;
 	font-size: 1rem;
 	line-height: 1.4;
+	list-style: none;
 }
 
-.projects-legend span {
+.projects-legend li {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.45rem;
 	white-space: nowrap;
+}
+
+.projects-legend li::before {
+	content: "";
+	width: 0.75rem;
+	height: 0.75rem;
+	border: 1px solid var(--color-ink);
+}
+
+.projects-legend [data-category="software"]::before,
+.project-entry[data-category="software"]::before {
+	background: var(--color-ink);
+}
+
+.projects-legend [data-category="hardware"]::before,
+.project-entry[data-category="hardware"]::before {
+	border: 0;
+	background: var(--color-ink);
+	clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.projects-legend [data-category="volunteer"]::before,
+.project-entry[data-category="volunteer"]::before {
+	border: 0;
+	background: var(--color-ink);
+	clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 92%, 50% 70%, 21% 92%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 .projects-journey {
@@ -587,7 +615,7 @@ a.badge:hover {
 }
 
 .essay-header h1 {
-	margin-top: 0.75rem;
+	margin-top: 0.25rem;
 	text-wrap: balance;
 }
 

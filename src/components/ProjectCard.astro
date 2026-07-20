@@ -14,7 +14,7 @@ const lang = currentLocale(Astro.currentLocale);
 const { gallery, links } = project.data;
 ---
 
-<article class="project-entry">
+<article class="project-entry" data-category={project.data.category}>
 	<div class="project-entry-content">
 		<ProjectMeta {project} />
 		<h3 class="entry-title"><a href={projectPath(project, lang)}>{project.data.title}</a></h3>

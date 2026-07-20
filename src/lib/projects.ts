@@ -54,6 +54,7 @@ function assertProjectTranslations(groups: Map<string, Project[]>): void {
 			if (
 				pt.data.start_at !== en.data.start_at ||
 				pt.data.end_at !== en.data.end_at ||
+				pt.data.category !== en.data.category ||
 				pt.data.tags.length !== en.data.tags.length ||
 				pt.data.tags.some((tag) => !en.data.tags.includes(tag))
 			) {

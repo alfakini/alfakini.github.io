@@ -8,7 +8,14 @@ import ProjectCard from '../ProjectCard.astro';
 
 const lang = currentLocale(Astro.currentLocale);
 const t = useT(lang);
-const years = groupProjectsByYear(await getProjects(lang));
+const projects = await getProjects(lang);
+const years = groupProjectsByYear(projects);
+const categories = [...new Set(projects.map((project) => project.data.category))];
+const categoryLabels = {
+	hardware: t('projects.hardware'),
+	software: t('projects.software'),
+	volunteer: t('projects.volunteer'),
+};
 const pageTitle = `${t('projects.title')} | ${SITE_TITLE}`;
 ---
 
@@ -16,6 +23,9 @@ const pageTitle = `${t('projects.title')} | ${SITE_TITLE}`;
 	<header class="page-header projects-header">
 		<h1>{t('projects.title')}</h1>
 		<p class="projects-subtitle">{t('projects.description')}</p>
+		<ul class="projects-legend sans" aria-label={t('projects.legend')}>
+			{categories.map((category) => <li data-category={category}>{categoryLabels[category]}</li>)}
+		</ul>
 	</header>
 	<section class="projects-journey" aria-label={t('projects.title')}>
 		<p class="projects-now"><span class="sans">{t('projects.now')}</span></p>

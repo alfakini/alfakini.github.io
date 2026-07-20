@@ -29,7 +29,11 @@ export const translations: TranslationDictionary = {
 	},
 	projects: {
 		description: 'Personal and professional projects.',
+		hardware: 'Hardware',
+		legend: 'Project categories',
 		now: 'Now',
+		software: 'Software',
 		title: 'Projects',
+		volunteer: 'Volunteer work',
 	},
 };
