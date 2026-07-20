@@ -72,7 +72,9 @@
 	--color-paper: #ffffff;
 	--color-rule: #ccc;
 	--color-muted: #666;
-	--content-width: 55%;
+	--page-max-width: 1400px;
+	--page-gutter: clamp(1rem, 3vw, 2rem);
+	--content-width: min(770px, 100%);
 	--font-serif: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
 	--font-sans: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 	--font-code: "Courier Prime", monospace;
@@ -83,8 +85,7 @@ html {
 }
 
 body {
-	width: 87.5%;
-	max-width: 1400px;
+	width: min(var(--page-max-width), calc(100% - var(--page-gutter) - var(--page-gutter)));
 	min-height: 100vh;
 	margin-inline: auto;
 	font-family: var(--font-serif);
@@ -143,7 +144,7 @@ main > *,
 .skip-link {
 	position: absolute;
 	top: 0;
-	left: 12.5%;
+	left: var(--page-gutter);
 	z-index: 10;
 	padding: 0.5rem 0.75rem;
 	background: var(--color-paper);
@@ -432,7 +433,7 @@ a.badge:hover {
 
 .projects-journey {
 	position: relative;
-	width: 75%;
+	width: min(1050px, 100%);
 	margin: 2.5rem auto 0;
 }
 
@@ -487,7 +488,8 @@ a.badge:hover {
 }
 
 .projects-now::after {
-	top: 2.4rem;
+	top: 2rem;
+	z-index: 1;
 	border-radius: 50%;
 	background: var(--color-paper);
 }
@@ -504,7 +506,7 @@ a.badge:hover {
 .project-entry-content {
 	position: relative;
 	box-sizing: border-box;
-	width: calc(50% - 2.5rem);
+	width: min(468.75px, calc(50% - 3.5rem));
 }
 
 .project-entry:nth-of-type(odd) .project-entry-content {
@@ -527,8 +529,7 @@ a.badge:hover {
 
 .entry-image,
 .entry-thumbs {
-	width: 300px;
-	max-width: 100%;
+	width: min(351.5625px, 100%);
 }
 
 .project-entry:nth-of-type(odd) .entry-image,
@@ -543,6 +544,7 @@ a.badge:hover {
 
 .entry-image,
 .entry-thumb {
+	box-sizing: border-box;
 	display: block;
 	aspect-ratio: 4 / 3;
 	border: 1px solid var(--color-rule);
@@ -550,7 +552,7 @@ a.badge:hover {
 }
 
 .entry-image {
-	height: 225px;
+	height: auto;
 }
 
 .entry-thumb {
@@ -579,7 +581,16 @@ a.badge:hover {
 }
 
 .project-entry .entry-summary {
+	width: min(351.5625px, 100%);
 	margin: 0.8rem 0 0;
+}
+
+.project-entry:nth-of-type(odd) .entry-summary {
+	margin-left: auto;
+}
+
+.project-entry:nth-of-type(even) .entry-summary {
+	margin-right: auto;
 }
 
 /* The title link stretches over the whole entry, so a click anywhere in it
@@ -698,17 +709,37 @@ a.badge:hover {
 	width: var(--content-width);
 }
 
+.prose .video-embed {
+	width: var(--content-width);
+	aspect-ratio: 16 / 9;
+	margin: 2rem auto;
+}
+
+.prose .video-embed iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.prose > figure .video-embed {
+	margin: 0;
+}
+
 .prose > p > :is(img, video) {
 	width: 100%;
 }
 
 .prose > figure {
-	max-width: var(--content-width);
+	width: var(--content-width);
+	max-width: 100%;
 	margin: 0 auto 3em;
 }
 
 .prose > figure img {
+	display: block;
 	width: 100%;
+	max-width: 100%;
+	height: auto;
 }
 
 .prose > :is(h1, h2, h3, h4, h5, h6) {
@@ -740,16 +771,11 @@ a.badge:hover {
 }
 
 .prose figcaption {
-	position: relative;
-	float: right;
-	clear: right;
-	max-width: 40%;
-	margin-top: 0;
+	margin-top: 0.75rem;
 	margin-bottom: 0;
 	font-size: 1.1rem;
 	line-height: 1.6;
-	text-align: left;
-	vertical-align: baseline;
+	text-align: center;
 }
 
 .prose table {
@@ -950,11 +976,6 @@ a.badge:hover {
 }
 
 @media (max-width: 760px) {
-	body {
-		width: 84%;
-		padding-inline: 8%;
-	}
-
 	.site-header {
 		gap: 1rem;
 		flex-wrap: wrap;
@@ -990,6 +1011,10 @@ a.badge:hover {
 		max-width: none;
 	}
 
+	.prose .video-embed {
+		width: 100%;
+	}
+
 	.hero-image,
 	.prose > figure {
 		max-width: 90%;
@@ -997,11 +1022,6 @@ a.badge:hover {
 
 	.prose > :is(dl, ol, ul) {
 		width: 90%;
-	}
-
-	.prose figcaption {
-		float: none;
-		max-width: none;
 	}
 
 	.site-footer {
@@ -1073,10 +1093,35 @@ a.badge:hover {
 
 	.projects-now::after {
 		left: 4px;
+		top: 50%;
+	}
+
+	.projects-now::before,
+	.projects-year::before,
+	.project-entry::after {
+		content: "";
+		position: absolute;
+		left: 4px;
+		width: calc(2rem - 4px);
+		border-top: 1px solid var(--color-rule);
+	}
+
+	.projects-year::before {
+		top: 0.7em;
+	}
+
+	.projects-now::before {
+		left: 11px;
+		width: calc(2rem - 11px);
+		top: 50%;
 	}
 
 	.project-entry {
 		padding-left: 2rem;
+	}
+
+	.project-entry::after {
+		top: 0.75rem;
 	}
 
 	.project-entry-content,
@@ -1087,8 +1132,15 @@ a.badge:hover {
 		text-align: left;
 	}
 
+	.project-entry:nth-of-type(odd) .entry-summary,
+	.project-entry:nth-of-type(even) .entry-summary {
+		margin-right: auto;
+		margin-left: 0;
+	}
+
 	.project-entry::before {
 		left: 4px;
+		z-index: 1;
 	}
 
 	.project-entry:nth-of-type(odd) .entry-image,

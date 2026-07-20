@@ -57,7 +57,8 @@ const pageTitle = `${article.title} | ${SITE_TITLE}`;
 	const footer = article?.querySelector('.essay-footer');
 	const footnotes = footer?.querySelector('.essay-footnotes');
 	const list = footnotes?.querySelector('ol');
-	const narrowLayout = window.matchMedia('(max-width: 760px)');
+	// Below this width, sidenotes no longer fit beside the fixed reading column.
+	const narrowLayout = window.matchMedia('(max-width: 1440px)');
 
 	if (article && footer instanceof HTMLElement && footnotes instanceof HTMLElement && list) {
 		const notes = [...article.querySelectorAll('.prose label.sidenote-number')].flatMap((label, index) => {

@@ -32,7 +32,7 @@ export const translations = {
 		now: 'Agora',
 		software: 'Software',
 		title: 'Projetos',
-		volunteer: 'Voluntariado',
+		maker: 'Maker',
 	},
 } as const;
 

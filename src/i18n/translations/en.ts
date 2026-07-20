@@ -34,6 +34,6 @@ export const translations: TranslationDictionary = {
 		now: 'Now',
 		software: 'Software',
 		title: 'Projects',
-		volunteer: 'Volunteer work',
+		maker: 'Maker',
 	},
 };

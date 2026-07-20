@@ -4,6 +4,58 @@ function isElement(node, tagName) {
 	return node?.type === 'element' && (!tagName || node.tagName === tagName);
 }
 
+function captionedFigure(content, caption) {
+	return {
+		type: 'element',
+		tagName: 'figure',
+		properties: {},
+		children: [
+			content,
+			{
+				type: 'element',
+				tagName: 'figcaption',
+				properties: {},
+				children: [{ type: 'text', value: caption }],
+			},
+		],
+	};
+}
+
+function isYouTubeEmbed(src) {
+	try {
+		const url = new URL(src);
+		return (
+			url.protocol === 'https:' &&
+			(url.hostname === 'youtube.com' || url.hostname === 'www.youtube.com') &&
+			url.pathname.startsWith('/embed/')
+		);
+	} catch {
+		return false;
+	}
+}
+
+function videoEmbed(src, title) {
+	return {
+		type: 'element',
+		tagName: 'div',
+		properties: { className: ['video-embed'] },
+		children: [
+			{
+				type: 'element',
+				tagName: 'iframe',
+				properties: {
+					src,
+					title,
+					loading: 'lazy',
+					allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+					allowFullScreen: true,
+				},
+				children: [],
+			},
+		],
+	};
+}
+
 function textContent(node) {
 	if (node?.type === 'text') return node.value;
 	return (node?.children ?? []).map(textContent).join('');
@@ -58,29 +110,21 @@ function transformChildren(parent, state) {
 			continue;
 		}
 
-		if (
-			isElement(child, 'p') &&
-			child.children.length === 1 &&
-			isElement(child.children[0], 'img') &&
-			typeof child.children[0].properties?.title === 'string'
-		) {
+		if (isElement(child, 'p') && child.children.length === 1 && isElement(child.children[0], 'img')) {
 			const image = child.children[0];
-			const caption = image.properties.title;
+			const caption = image.properties.title ?? image.properties.alt;
+			if (typeof caption !== 'string' || caption.trim() === '') continue;
+			if (isYouTubeEmbed(image.properties.src)) {
+				state.videos += 1;
+				parent.children[index] = captionedFigure(
+					videoEmbed(image.properties.src, caption),
+					`Video ${state.videos}: ${caption}`,
+				);
+				continue;
+			}
 			delete image.properties.title;
-			parent.children[index] = {
-				type: 'element',
-				tagName: 'figure',
-				properties: {},
-				children: [
-					image,
-					{
-						type: 'element',
-						tagName: 'figcaption',
-						properties: {},
-						children: [{ type: 'text', value: caption }],
-					},
-				],
-			};
+			state.figures += 1;
+			parent.children[index] = captionedFigure(image, `Figure ${state.figures}: ${caption}`);
 		}
 	}
 
@@ -99,6 +143,6 @@ export default function rehypeSemanticMarkdown() {
 			contentLocale(file.data.astro?.frontmatter?.lang, file.path) === 'pt-BR'
 				? 'Alternar nota lateral'
 				: 'Toggle margin note';
-		transformChildren(tree, { marginNotes: 0, marginNoteLabel });
+		transformChildren(tree, { figures: 0, marginNotes: 0, marginNoteLabel, videos: 0 });
 	};
 }
