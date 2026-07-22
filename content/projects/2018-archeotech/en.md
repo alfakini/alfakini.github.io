@@ -8,7 +8,7 @@ tags:
   - 3d-printing
   - education
 start_at: '2018'
-end_at: '2019'
+end_at: '2018'
 gallery:
   - './archeotech-artefatos.webp'
   - './archeotech-cranio-digitalizado.webp'
