@@ -64,11 +64,34 @@ function videoEmbed(src, title) {
 }
 
 function localVideo(src) {
+	const path = src.split(/[?#]/, 1)[0].toLowerCase();
+	const type = path.endsWith('.webm')
+		? 'video/webm'
+		: path.endsWith('.ogv')
+			? 'video/ogg'
+			: path.endsWith('.mov')
+				? 'video/quicktime'
+				: 'video/mp4';
+
 	return {
 		type: 'element',
-		tagName: 'video',
-		properties: { src, controls: true, preload: 'metadata' },
-		children: [],
+		tagName: 'div',
+		properties: { className: ['video-embed'] },
+		children: [
+			{
+				type: 'element',
+				tagName: 'video',
+				properties: { controls: true, preload: 'metadata' },
+				children: [
+					{
+						type: 'element',
+						tagName: 'source',
+						properties: { src, type },
+						children: [],
+					},
+				],
+			},
+		],
 	};
 }
 
