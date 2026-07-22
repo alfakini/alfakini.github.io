@@ -34,6 +34,13 @@ function isYouTubeEmbed(src) {
 	}
 }
 
+function isLocalVideo(src) {
+	if (typeof src !== 'string' || !/^(?:\/|\.\.?\/)/.test(src)) return false;
+
+	const path = src.split(/[?#]/, 1)[0].toLowerCase();
+	return /\.(?:mp4|webm|ogv|mov)$/.test(path);
+}
+
 function videoEmbed(src, title) {
 	return {
 		type: 'element',
@@ -53,6 +60,15 @@ function videoEmbed(src, title) {
 				children: [],
 			},
 		],
+	};
+}
+
+function localVideo(src) {
+	return {
+		type: 'element',
+		tagName: 'video',
+		properties: { src, controls: true, preload: 'metadata' },
+		children: [],
 	};
 }
 
@@ -120,6 +136,11 @@ function transformChildren(parent, state) {
 					videoEmbed(image.properties.src, caption),
 					`Video ${state.videos}: ${caption}`,
 				);
+				continue;
+			}
+			if (isLocalVideo(image.properties.src)) {
+				state.videos += 1;
+				parent.children[index] = captionedFigure(localVideo(image.properties.src), `Video ${state.videos}: ${caption}`);
 				continue;
 			}
 			delete image.properties.title;

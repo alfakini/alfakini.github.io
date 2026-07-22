@@ -9,7 +9,8 @@ interface Props {
 const { project }: Props = Astro.props;
 const lang = currentLocale(Astro.currentLocale);
 const t = useT(lang);
-const { start_at, end_at } = project.data;
+const { start_at, end_at, institutions } = project.data;
+const institutionNames = new Intl.ListFormat(lang, { type: 'conjunction' }).format(institutions);
 ---
 
 <p class="essay-meta sans">
@@ -19,9 +20,11 @@ const { start_at, end_at } = project.data;
 			!(end_at !== null && projectYear(end_at) === projectYear(start_at)) && (
 				<Fragment>
 					{' '}&ndash;{' '}
-					{end_at ? <time datetime={end_at}>{projectYear(end_at)}</time> : t('projects.now')}
+					{end_at ? <time datetime={end_at}>{projectYear(end_at)}</time> : t('projects.current')}
 				</Fragment>
 			)
 		}
 	</span>
+	<span aria-hidden="true">·</span>
+	<span class="project-institutions">{institutionNames}</span>
 </p>

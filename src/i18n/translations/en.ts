@@ -28,6 +28,7 @@ export const translations: TranslationDictionary = {
 		title: 'Tags',
 	},
 	projects: {
+		current: 'Current',
 		description:
 			'Building is how I understand the world and contribute to changing it. Since childhood, I have taken things apart, investigated them, and created new ones, driven by curiosity and a desire to understand how systems work, whether they are technical systems, such as hardware, electronics, and software, or systems shaped by ideas, relationships, and social structures. I also believe knowledge becomes more valuable when it is shared. That is why I enjoy sharing what I learn as I study, experiment, and build, helping others explore new possibilities. Through individual projects or collaborations with companies, associations, and communities, my purpose is to apply the hacker spirit to solve problems, strengthen communities, and create open, useful solutions that make a positive impact on society.',
 		hardware: 'Hardware',
