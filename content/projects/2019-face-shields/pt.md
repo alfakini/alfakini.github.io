@@ -5,6 +5,8 @@ category: maker
 tags:
   - 3d-printer
   - maker
+institutions:
+  - Fab Lab Joinville
 start_at: "2019"
 end_at: "2019"
 gallery:

@@ -9,6 +9,9 @@ tags:
   - volunteering
   - scheduling
   - joinville
+institutions:
+  - Fab Lab Joinville
+  - Magrathea Labs
 start_at: "2020"
 end_at: "2021"
 gallery:

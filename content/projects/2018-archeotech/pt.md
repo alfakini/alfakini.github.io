@@ -7,6 +7,8 @@ tags:
   - 3d-scanning
   - 3d-printing
   - education
+institutions:
+  - Fab Lab Joinville
 start_at: '2018'
 end_at: '2018'
 gallery:

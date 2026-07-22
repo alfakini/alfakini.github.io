@@ -46,6 +46,7 @@ const projects = defineCollection({
 				description: z.string().min(1),
 				category: z.enum(['software', 'hardware', 'maker']),
 				tags: z.array(z.string().min(1)).default([]),
+				institutions: z.array(z.string().min(1)).min(1),
 				start_at: yearMonth,
 				end_at: yearMonth.nullable(),
 				links: z

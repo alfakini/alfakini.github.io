@@ -3,6 +3,8 @@ title: 'Interactive tunnel application'
 tags:
   - software
   - multi-touch
+institutions:
+  - CCG Portugal
 start_at: '2008'
 end_at: '2009'
 description: 'A multi-touch application to explore the circulatory system in an immersive installation at the Guimaraes Science Center, Portugal.'

@@ -9,6 +9,8 @@ tags:
   - machine-learning
   - lerobot
   - hackathon
+institutions:
+  - Fab Lab Joinville
 start_at: "2025"
 end_at: null
 gallery:

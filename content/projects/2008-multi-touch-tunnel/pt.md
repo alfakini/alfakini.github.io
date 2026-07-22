@@ -3,6 +3,8 @@ title: 'Aplicação para túnel interativo'
 tags:
   - software
   - multi-touch
+institutions:
+  - CCG Portugal
 start_at: '2008'
 end_at: '2009'
 description: 'Aplicação multitoque para explorar o sistema circulatório em uma instalação imersiva do Centro de Ciência Viva de Guimarães, Portugal.'
