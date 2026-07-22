@@ -386,6 +386,10 @@ a.badge:hover {
 	margin-bottom: 0;
 }
 
+.projects-header > p {
+	width: var(--content-width);
+}
+
 .projects-legend {
 	display: flex;
 	flex-wrap: wrap;
@@ -630,20 +634,13 @@ a.badge:hover {
 	text-wrap: balance;
 }
 
-.essay-header .subtitle,
-.projects-subtitle {
+.essay-header .subtitle {
 	display: block;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	font-size: 1.8rem;
 	font-style: italic;
 	line-height: 1.25;
-}
-
-.projects-subtitle {
-	width: var(--content-width);
-	margin-inline: auto;
-	margin-bottom: 0;
 }
 
 .hero-image {
@@ -1071,7 +1068,6 @@ a.badge:hover {
 		cursor: pointer;
 	}
 
-	.projects-subtitle,
 	.projects-legend,
 	.projects-journey {
 		width: 100%;

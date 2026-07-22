@@ -22,7 +22,7 @@ const pageTitle = `${t('projects.title')} | ${SITE_TITLE}`;
 <BaseLayout title={pageTitle} description={t('projects.description')}>
 	<header class="page-header projects-header">
 		<h1>{t('projects.title')}</h1>
-		<p class="projects-subtitle">{t('projects.description')}</p>
+		<p>{t('projects.description')}</p>
 		<ul class="projects-legend sans" aria-label={t('projects.legend')}>
 			{categories.map((category) => <li data-category={category}>{categoryLabels[category]}</li>)}
 		</ul>
