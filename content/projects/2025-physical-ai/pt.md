@@ -56,6 +56,7 @@ As equipes exploraram aplicações distintas para o braço robótico, da intera�
 Uma demonstração de interação lúdica em que o braço robótico participa de uma partida de UNO.
 
 ![Projeto João Sem Braço, braço robótico jogando UNO](https://www.youtube.com/embed/W44R6tbQoQQ)
+
 **Sbórshchiki frúktov**
 
 Proposta de colheita de maçãs, investigando como o braço pode identificar, alcançar e manipular frutas.
