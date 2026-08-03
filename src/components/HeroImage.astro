@@ -9,5 +9,10 @@ const { src }: Props = Astro.props;
 ---
 
 <figure class="hero-image">
-	<Image {src} widths={[640, 960, 1280]} sizes="(max-width: 760px) 84vw, 48vw" alt="" />
+	<Image
+		{src}
+		widths={[640, 960, 1280, 1792]}
+		sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 834px) calc(100vw - 64px), 770px"
+		alt=""
+	/>
 </figure>

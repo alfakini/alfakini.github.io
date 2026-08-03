@@ -5,6 +5,8 @@ export const translations = {
 	},
 	header: {
 		navigation: 'Principal',
+		language: 'Idioma',
+		theme: 'Tema escuro',
 		essays: 'Ensaios',
 		projects: 'Projetos',
 		skipToContent: 'Pular para o conteúdo',

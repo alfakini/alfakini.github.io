@@ -7,6 +7,8 @@ export const translations: TranslationDictionary = {
 	},
 	header: {
 		navigation: 'Main',
+		language: 'Language',
+		theme: 'Dark theme',
 		essays: 'Essays',
 		projects: 'Projects',
 		skipToContent: 'Skip to content',

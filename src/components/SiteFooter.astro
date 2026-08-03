@@ -8,9 +8,12 @@ const t = useT(lang);
 ---
 
 <footer class="site-footer sans">
-	<p>&copy; {new Date().getFullYear()} {SITE_AUTHOR}.</p>
-	<nav aria-label={t('footer.navigation')}>
-		<a href={routeUrl(lang, 'tags')}>{t('footer.tags')}</a>
-		<a href="/rss.xml">RSS</a>
-	</nav>
+	<div class="site-footer-inner">
+		<nav aria-label={t('footer.navigation')}>
+			<a href={routeUrl(lang, 'tags')}>{t('footer.tags')}</a>
+			<span class="nav-separator" aria-hidden="true">|</span>
+			<a href="/rss.xml">RSS</a>
+		</nav>
+		<p>&copy; {new Date().getFullYear()} {SITE_AUTHOR}</p>
+	</div>
 </footer>

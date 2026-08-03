@@ -1,38 +1,120 @@
 ---
 import { SITE_TITLE } from '../consts';
-import { currentLocale, defaultLocale, type Locale, useT } from '../i18n';
+import { currentLocale, useT } from '../i18n';
 import { routeUrl, switchLocaleUrl } from '../i18n/routes';
-import Badge from './Badge.astro';
 
 const lang = currentLocale(Astro.currentLocale);
 const pathname = Astro.url.pathname;
 const titleCharacters = Array.from(SITE_TITLE);
-const translation: Locale = lang === defaultLocale ? 'en' : defaultLocale;
 const t = useT(lang);
-const translationLabel = translation === 'pt-BR' ? t('common.readInPortuguese') : t('common.readInEnglish');
 ---
 
 <a class="skip-link" href="#conteudo">{t('header.skipToContent')}</a>
 <header class="site-header sans">
-	<a class="site-name" href={routeUrl(lang, 'home')} aria-label={SITE_TITLE} data-scramble-title>
-		{titleCharacters.map((character) => (
-			<span class={character === ' ' ? 'site-name-space' : undefined} aria-hidden="true" data-scramble-character data-character={character}>{character}</span>
-		))}
-	</a>
-	<div class="header-nav">
-		<nav aria-label={t('header.navigation')}>
-			<ul>
-				<li><a href={routeUrl(lang, 'home')} aria-current={pathname === routeUrl(lang, 'home') ? 'page' : undefined}>{t('header.essays')}</a></li>
-				<li><a href={routeUrl(lang, 'projects')} aria-current={pathname === routeUrl(lang, 'projects') ? 'page' : undefined}>{t('header.projects')}</a></li>
-			</ul>
-		</nav>
-		<Badge href={switchLocaleUrl(translation, pathname)} hreflang={translation} lang={translation} rel="alternate" aria-label={translationLabel}>
-			{translation === 'pt-BR' ? 'PT' : 'EN'}
-		</Badge>
+	<div class="site-header-inner">
+		<a class="site-name" href={routeUrl(lang, 'home')} aria-label={SITE_TITLE} data-scramble-title>
+			{titleCharacters.map((character) => (
+				<span class={character === ' ' ? 'site-name-space' : undefined} aria-hidden="true" data-scramble-character data-character={character}>{character}</span>
+			))}
+		</a>
+		<div class="header-nav">
+			<nav class="primary-navigation" aria-label={t('header.navigation')}>
+				<ul>
+					<li><a href={routeUrl(lang, 'home')} aria-current={pathname === routeUrl(lang, 'home') ? 'page' : undefined}>{t('header.essays')}</a></li>
+					<li><a href={routeUrl(lang, 'projects')} aria-current={pathname === routeUrl(lang, 'projects') ? 'page' : undefined}>{t('header.projects')}</a></li>
+				</ul>
+			</nav>
+			<span class="nav-separator" aria-hidden="true">|</span>
+			<nav class="language-switch" aria-label={t('header.language')}>
+				<a
+					href={switchLocaleUrl('pt-BR', pathname)}
+					hreflang="pt-BR"
+					lang="pt-BR"
+					rel={lang === 'pt-BR' ? undefined : 'alternate'}
+					aria-current={lang === 'pt-BR' ? 'page' : undefined}>PT</a
+				>
+				<span class="language-separator" aria-hidden="true">|</span>
+				<a
+					href={switchLocaleUrl('en', pathname)}
+					hreflang="en"
+					lang="en"
+					rel={lang === 'en' ? undefined : 'alternate'}
+					aria-current={lang === 'en' ? 'page' : undefined}>EN</a
+				>
+			</nav>
+			<button
+				class="theme-toggle"
+				type="button"
+				aria-label={t('header.theme')}
+				title={t('header.theme')}
+				aria-pressed="false"
+				data-theme-toggle
+			>
+				<svg
+					class="theme-icon theme-icon-sun"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364-.707-.707M6.343 6.343l-.707-.707m12.728 0-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"></path>
+				</svg>
+				<svg
+					class="theme-icon theme-icon-moon"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"></path>
+				</svg>
+			</button>
+		</div>
 	</div>
 </header>
 
 <script>
+	type Theme = 'light' | 'dark';
+
+	const root = document.documentElement;
+	const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+	const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+	const darkMode = window.matchMedia('(prefers-color-scheme: dark)');
+	let hasExplicitTheme = false;
+
+	try {
+		const storedTheme = localStorage.getItem('theme');
+		hasExplicitTheme = storedTheme === 'light' || storedTheme === 'dark';
+	} catch {}
+
+	const applyTheme = (theme: Theme) => {
+		root.dataset.theme = theme;
+		themeToggle?.setAttribute('aria-pressed', String(theme === 'dark'));
+		themeColor?.setAttribute('content', theme === 'dark' ? '#181818' : '#ffffff');
+	};
+
+	applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+
+	themeToggle?.addEventListener('click', () => {
+		const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+		hasExplicitTheme = true;
+		applyTheme(theme);
+
+		try {
+			localStorage.setItem('theme', theme);
+		} catch {}
+	});
+
+	darkMode.addEventListener('change', (event) => {
+		if (!hasExplicitTheme) applyTheme(event.matches ? 'dark' : 'light');
+	});
+
 	const title = document.querySelector<HTMLElement>('[data-scramble-title]');
 	const scrambleCharacters = '!@#$%^&*()_+-={}[];:,.<>/?|\\';
 	const flipDelay = 45;
