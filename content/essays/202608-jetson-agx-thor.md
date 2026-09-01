@@ -3,7 +3,7 @@ title: 'Instalando o JetPack 7.2.1 na Jetson AGX Thor'
 description: 'Por que o instalador termina em "Unsupported board!", como uma correção parcial pode deixar o NVMe sem boot e o caminho seguro pelo SDK Manager.'
 published_at: '2026-08-29'
 tags: ['nvidia', 'jetson', 'linux']
-status: draft
+status: published
 locale: pt-BR
 slug: jetson-agx-thor-jetpack-7-2-1
 ---
